@@ -194,7 +194,7 @@ function drawMap()
 			if(upPressed)
 			{
 				if(playerX >= x && playerX <= x + 23 &&
-				playerY >= y && playerY <= y + 23)
+				playerY >= y && playerY <= y + 2)
 				{
 					if(map[i][j] != 0)
 					{
@@ -234,7 +234,7 @@ function drawMap()
 			}
 			else if(map[i][j] == 1)
 			{
-				ctx.fillRect(x, y, 24,24 );
+				ctx.fillRect(x, y, 25,2 );
 			}
 			
 		}
