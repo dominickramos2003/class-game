@@ -36,7 +36,8 @@ var map = [
 [1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1]
 ];
 
-
+var help1 = new Image(); help1.src = "icons8-help-50 (1).png";
+var help2 = new Image(); help2.src = "icons8-help-50.png";
 
 var playerX = 200;
 var playerY = 200;
@@ -53,8 +54,29 @@ var downPressed = false;
 var leftPressed = false;
 var rightPressed = false;
 var collisionDetected = false;
+var start = true;
+var help = false;
 
 
+function getPosition(event)
+{
+mouseIsDown = true;
+}
+function getPosition2(event){
+mouseIsDown = false;
+}
+
+function playPop()
+{
+var pop = new Audio();
+pop.src = "pop.wav";
+pop.play();
+}
+function mouseMoveHandler(e) 
+{
+    pX = e.clientX - canvas.offsetLeft;
+    pY = e.clientY - canvas.offsetTop;
+}
 
 function keyDownHandler(e){
 	
@@ -114,6 +136,135 @@ function controls()
 		jumpTime -=1;
 	}
 }
+function getPosition(event)
+{
+mouseIsDown = true;
+}
+function getPosition2(event){
+mouseIsDown = false;
+}
+
+function playPop()
+{
+var pop = new Audio();
+pop.src = "pop.wav";
+pop.play();
+}
+function mouseMoveHandler(e) 
+{
+    pX = e.clientX - canvas.offsetLeft;
+    pY = e.clientY - canvas.offsetTop;
+}
+
+function startScreen()
+{
+ctx.font = "125px Arial";
+ctx.fillStyle = "rgb(0,0,0)"
+ctx.fillText("NAME", 130, 100);
+ctx.font = "80px Arial";
+ctx.fillStyle = "rgb(238,238,238)";
+if(pX >= 200 && pX <= 500 && pY >= 240 && pY <= 310)
+{
+ctx.fillStyle = "rgb(238,238,238)";
+ ctx.font = "80px Arial";
+ ctx.fillText("Play", 200, 300);
+
+
+ 
+	if((mouseIsDown && sound) == true)
+	{
+		playPop();
+	
+		sound = false;
+	}
+}
+else
+{
+	ctx.fillStyle = "rgb(0,0,0)"
+	ctx.font = "80px Arial";
+	ctx.fillText("Play", 200, 300);
+}
+
+	ctx.fillStyle = "rgb(100,100,100)";
+	<!-- ctx.fillRect(200, 440, 335, 70); -->
+	ctx.fillStyle = "rgb(200,200,200)";
+	if(pX >= 750 && pX <= 800 && pY >= 550 && pY <= 600 )
+	{
+	ctx.fillStyle = "rgb(238,238,238)";
+	 ctx.font = "50px Arial";
+	ctx.drawImage(help1,750,550);
+
+
+	 
+		if(mouseIsDown)
+		{
+			help = true;
+		}
+	}
+	else
+	{
+		ctx.fillStyle = "rgb(0,0,0)"
+		ctx.font = "50px Arial";
+	ctx.drawImage(help2,750, 550);
+	}
+
+}
+function helpScreen()
+{
+		<!-- ctx.drawImage(helpS,0, 0); -->
+		
+		
+	if(pX >= 200 && pX <= 285 && pY >= 525 && pY <= 585 )
+	{
+	ctx.fillStyle = "rgb(238,238,238)";
+	 ctx.font = "50px Arial";
+	 ctx.drawImage(helpS1, 0, 0);
+
+
+	 
+		if(mouseIsDown)
+		{
+			howWin = true;
+		}
+	}
+	else
+	{
+		ctx.fillStyle = "rgb(0,0,0)"
+		ctx.font = "50px Arial";
+		ctx.drawImage(helpS2,0, 0);
+
+	}
+
+	
+	//ctx.fillRect(25, 15, 50, 50);
+	//25
+
+}
+function howWinScreen()
+{
+if(pX >= 25 && pX <= 75 && pY >= 15 && pY <= 65 )
+	{
+	ctx.fillStyle = "rgb(238,238,238)";
+	 ctx.font = "50px Arial";
+	 ctx.drawImage(howWinScreen2, 0, 0);
+
+
+	 
+		if(mouseIsDown)
+		{
+			howWin = false;
+			help = false;
+		}
+	}
+	else 
+	{
+		ctx.fillStyle = "rgb(0,0,0)"
+		ctx.font = "50px Arial";
+	ctx.drawImage(howWinScreen1,0, 0);
+
+	}
+}
+
 function gravity()
 {
 	ctx.clearRect(playerX-1,playerY-1,35,35);
@@ -257,14 +408,32 @@ function drawMap()
 
 function draw()
 {
-	
-	<!-- ctx.clearRect(0,0,800,600); -->
-	controls();
-	gravity();
-	drawMap();
-	console.log("coliscollisionDetected "+collisionDetected);
-	console.log("falling " + falling);
-	
+	if(start)
+	{
+		if(help)
+		{
+			
+			helpScreen();
+			if(howWin)
+			{
+				howWinScreen();
+			}
+		}
+		else
+		{
+			startScreen();
+		}
+		
+	}
+	else
+	{
+		<!-- ctx.clearRect(0,0,800,600); -->
+		controls();
+		gravity();
+		drawMap();
+		console.log("coliscollisionDetected "+collisionDetected);
+		console.log("falling " + falling);
+	}
 	
 }
 
