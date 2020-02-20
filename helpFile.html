@@ -177,6 +177,7 @@ ctx.fillStyle = "rgb(238,238,238)";
 		
 			sound = false;
 			start = false;
+			ctx.clearRect(0,0,800,600);
 		}
 	}
 	else
@@ -322,13 +323,13 @@ function drawMap()
 			}
 			if(leftPressed)
 			{
-				if(playerX >= x && playerX <= x + 23 &&
-				playerY >= y && playerY <= y + 23)
+				if(playerX >= x && playerX <= x + 24 &&
+				playerY >= y && playerY <= y + 24)
 				{
 					if(map[i][j] != 0)
 					{
 						collisionDetected = true;
-						falling = false;
+						
 						playerX += 1;
 					}
 					else
