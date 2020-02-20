@@ -198,12 +198,12 @@ ctx.fillStyle = "rgb(238,238,238)";
 			help = true;
 		}
 	}
-		else
-		{
-			ctx.fillStyle = "rgb(0,0,0)"
-			ctx.font = "50px Arial";
-			ctx.drawImage(help2,750, 550);
-		}
+	else
+	{
+		ctx.fillStyle = "rgb(0,0,0)"
+		ctx.font = "50px Arial";
+		ctx.drawImage(help2,750, 550);
+	}
 
 }
 function helpScreen()
@@ -407,6 +407,7 @@ function draw()
 {
 	if(start)
 	{
+		ctx.clearRect(0,0,800,600);
 		if(help)
 		{
 			
