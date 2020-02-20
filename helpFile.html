@@ -41,10 +41,12 @@ var map = [
 
 var help1 = new Image(); help1.src = "icons8-help-50 (1).png";
 var help2 = new Image(); help2.src = "icons8-help-50.png";
+var helpSc = new Image(); helpSc.src = "helpScreen.png";
+
 
 var playerX = 200;
 var playerY = 200;
-var playerH = 29;
+var playerH = 29; 
 var playerW = 29;
 var fallSpeed = 1;
 var speed = 1;
@@ -174,6 +176,7 @@ ctx.fillStyle = "rgb(238,238,238)";
 			playPop();
 		
 			sound = false;
+			start = false;
 		}
 	}
 	else
@@ -208,17 +211,12 @@ ctx.fillStyle = "rgb(238,238,238)";
 }
 function helpScreen()
 {
-		<!-- ctx.drawImage(helpS,0, 0); -->
 		
-		
+		ctx.drawImage(helpScreen, 0, 0);
 	if(pX >= 200 && pX <= 285 && pY >= 525 && pY <= 585 )
 	{
 	ctx.fillStyle = "rgb(238,238,238)";
 	 ctx.font = "50px Arial";
-	 ctx.drawImage(helpS1, 0, 0);
-
-
-	 
 		if(mouseIsDown)
 		{
 			howWin = true;
@@ -228,7 +226,6 @@ function helpScreen()
 	{
 		ctx.fillStyle = "rgb(0,0,0)"
 		ctx.font = "50px Arial";
-		ctx.drawImage(helpS2,0, 0);
 
 	}
 
@@ -239,11 +236,12 @@ function helpScreen()
 }
 function howWinScreen()
 {
-if(pX >= 25 && pX <= 75 && pY >= 15 && pY <= 65 )
+	
+	if(pX >= 25 && pX <= 75 && pY >= 15 && pY <= 65 )
 	{
-	ctx.fillStyle = "rgb(238,238,238)";
-	 ctx.font = "50px Arial";
-	 <!-- ctx.drawImage(howWinScreen2, 0, 0); -->
+		ctx.fillStyle = "rgb(238,238,238)";
+		ctx.font = "50px Arial";
+	 
 
 
 	 
@@ -257,7 +255,7 @@ if(pX >= 25 && pX <= 75 && pY >= 15 && pY <= 65 )
 	{
 		ctx.fillStyle = "rgb(0,0,0)"
 		ctx.font = "50px Arial";
-	<!-- ctx.drawImage(,0, 0); -->
+		
 
 	}
 }
