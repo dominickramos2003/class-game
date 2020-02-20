@@ -62,6 +62,7 @@ var collisionDetected = false;
 var start = true;
 var help = false;
 var mouseIsDown = false;
+var sound = true;
 
 
 function getPosition(event)
@@ -78,6 +79,14 @@ var pop = new Audio();
 pop.src = "pop.wav";
 pop.play();
 }
+function getPosition(event)
+{
+mouseIsDown = true;
+}
+function getPosition2(event){
+mouseIsDown = false;
+}
+
 function mouseMoveHandler(e) 
 {
     pX = e.clientX - canvas.offsetLeft;
@@ -142,25 +151,8 @@ function controls()
 		jumpTime -=1;
 	}
 }
-function getPosition(event)
-{
-mouseIsDown = true;
-}
-function getPosition2(event){
-mouseIsDown = false;
-}
 
-function playPop()
-{
-var pop = new Audio();
-pop.src = "pop.wav";
-pop.play();
-}
-function mouseMoveHandler(e) 
-{
-    pX = e.clientX - canvas.offsetLeft;
-    pY = e.clientY - canvas.offsetTop;
-}
+
 
 function startScreen()
 {
@@ -169,7 +161,7 @@ ctx.fillStyle = "rgb(0,0,0)"
 ctx.fillText("NAME", 130, 100);
 ctx.font = "80px Arial";
 ctx.fillStyle = "rgb(238,238,238)";
-	if(pX >= 200 && pX <= 280 && pY >= 300 && pY <= 380)
+	if(pX >= 200 && pX <= 360 && pY >= 220&& pY <= 300)
 	{
 		ctx.fillStyle = "rgb(238,0,238)";
 		ctx.font = "80px Arial";
