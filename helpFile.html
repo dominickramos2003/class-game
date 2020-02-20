@@ -13,6 +13,9 @@ var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
+document.addEventListener("mousemove", mouseMoveHandler, false);
+canvas.addEventListener("mousedown", getPosition, false);
+canvas.addEventListener("mouseup", getPosition2, false);
 var map = [
 [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 [1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1],
@@ -166,50 +169,49 @@ ctx.fillStyle = "rgb(0,0,0)"
 ctx.fillText("NAME", 130, 100);
 ctx.font = "80px Arial";
 ctx.fillStyle = "rgb(238,238,238)";
-if(pX >= 200 && pX <= 500 && pY >= 240 && pY <= 310)
-{
-ctx.fillStyle = "rgb(238,238,238)";
- ctx.font = "80px Arial";
- ctx.fillText("Play", 200, 300);
-
-
- 
-	if((mouseIsDown && sound) == true)
+	if(pX >= 200 && pX <= 280 && pY >= 300 && pY <= 380)
 	{
-		playPop();
-	
-		sound = false;
+		ctx.fillStyle = "rgb(238,0,238)";
+		ctx.font = "80px Arial";
+		ctx.fillText("Play", 200, 300);
+		console.log("play");
+
+	 
+		if((mouseIsDown && sound) == true)
+		{
+			playPop();
+		
+			sound = false;
+		}
 	}
-}
-else
-{
-	ctx.fillStyle = "rgb(0,0,0)"
-	ctx.font = "80px Arial";
-	ctx.fillText("Play", 200, 300);
-}
+	else
+	{
+		ctx.fillStyle = "rgb(0,0,0)";
+		ctx.font = "80px Arial";
+		ctx.fillText("Play", 200, 300);
+		console.log("play else");
+	}
 
 	ctx.fillStyle = "rgb(100,100,100)";
 	<!-- ctx.fillRect(200, 440, 335, 70); -->
 	ctx.fillStyle = "rgb(200,200,200)";
 	if(pX >= 750 && pX <= 800 && pY >= 550 && pY <= 600 )
 	{
-	ctx.fillStyle = "rgb(238,238,238)";
-	 ctx.font = "50px Arial";
-	ctx.drawImage(help1,750,550);
-
-
+		ctx.fillStyle = "rgb(238,238,238)";
+		ctx.font = "50px Arial";
+		ctx.drawImage(help1,750,550);
 	 
 		if(mouseIsDown)
 		{
 			help = true;
 		}
 	}
-	else
-	{
-		ctx.fillStyle = "rgb(0,0,0)"
-		ctx.font = "50px Arial";
-	ctx.drawImage(help2,750, 550);
-	}
+		else
+		{
+			ctx.fillStyle = "rgb(0,0,0)"
+			ctx.font = "50px Arial";
+			ctx.drawImage(help2,750, 550);
+		}
 
 }
 function helpScreen()
@@ -249,7 +251,7 @@ if(pX >= 25 && pX <= 75 && pY >= 15 && pY <= 65 )
 	{
 	ctx.fillStyle = "rgb(238,238,238)";
 	 ctx.font = "50px Arial";
-	 ctx.drawImage(howWinScreen2, 0, 0);
+	 <!-- ctx.drawImage(howWinScreen2, 0, 0); -->
 
 
 	 
@@ -263,7 +265,7 @@ if(pX >= 25 && pX <= 75 && pY >= 15 && pY <= 65 )
 	{
 		ctx.fillStyle = "rgb(0,0,0)"
 		ctx.font = "50px Arial";
-	ctx.drawImage(howWinScreen1,0, 0);
+	<!-- ctx.drawImage(,0, 0); -->
 
 	}
 }
@@ -425,6 +427,7 @@ function draw()
 		else
 		{
 			startScreen();
+			
 		}
 		
 	}
