@@ -42,6 +42,7 @@ var map = [
 var help1 = new Image(); help1.src = "icons8-help-50 (1).png";
 var help2 = new Image(); help2.src = "icons8-help-50.png";
 var helpSc = new Image(); helpSc.src = "helpScreen.png";
+var settingsArrow = new Image(); settingsArrow.src = "arrow.png";
 
 
 var playerX = 200;
@@ -177,7 +178,6 @@ ctx.fillStyle = "rgb(238,238,238)";
 		
 			sound = false;
 			start = false;
-			ctx.clearRect(0,0,800,600);
 		}
 	}
 	else
@@ -229,6 +229,13 @@ function helpScreen()
 		ctx.font = "50px Arial";
 
 	}
+	ctx.drawImage(settingsArrow, 15, 500);
+	if(pX >= 15 && pX <= 95 && pY >= 500 && pY <= 580 && mouseIsDown)
+	{
+		ctx.clearRect(0,0,800,600);
+		startScreen();
+		help = false;
+	}
 
 	
 	//ctx.fillRect(25, 15, 50, 50);
@@ -248,7 +255,7 @@ function howWinScreen()
 	 
 		if(mouseIsDown)
 		{
-			howWin = false;
+			//howWin = false;
 			help = false;
 		}
 	}
@@ -323,13 +330,13 @@ function drawMap()
 			}
 			if(leftPressed)
 			{
-				if(playerX >= x && playerX <= x + 24 &&
-				playerY >= y && playerY <= y + 24)
+				if(playerX >= x && playerX <= x + 23 &&
+				playerY >= y && playerY <= y + 23)
 				{
 					if(map[i][j] != 0)
 					{
 						collisionDetected = true;
-						
+						falling = false;
 						playerX += 1;
 					}
 					else
@@ -411,7 +418,7 @@ function draw()
 		{
 			
 			helpScreen();
-			if(howWin)
+			//if(howWin)
 			{
 				howWinScreen();
 			}
