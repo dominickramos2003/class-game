@@ -164,29 +164,7 @@ ctx.fillStyle = "rgb(0,0,0)"
 ctx.fillText("NAME", 130, 100);
 ctx.font = "80px Arial";
 ctx.fillStyle = "rgb(238,238,238)";
-	if(pX >= 200 && pX <= 360 && pY >= 220&& pY <= 300)
-	{
-		ctx.fillStyle = "rgb(238,0,238)";
-		ctx.font = "80px Arial";
-		ctx.fillText("Play", 200, 300);
-		console.log("play");
 
-	 
-		if((mouseIsDown && sound) == true)
-		{
-			playPop();
-		
-			sound = false;
-			start = false;
-		}
-	}
-	else
-	{
-		ctx.fillStyle = "rgb(0,0,0)";
-		ctx.font = "80px Arial";
-		ctx.fillText("Play", 200, 300);
-		console.log("play else");
-	}
 
 	ctx.fillStyle = "rgb(100,100,100)";
 	<!-- ctx.fillRect(200, 440, 335, 70); -->
@@ -207,6 +185,30 @@ ctx.fillStyle = "rgb(238,238,238)";
 		ctx.fillStyle = "rgb(0,0,0)"
 		ctx.font = "50px Arial";
 		ctx.drawImage(help2,750, 550);
+	}
+		if(pX >= 200 && pX <= 360 && pY >= 220&& pY <= 300)
+	{
+		ctx.fillStyle = "rgb(238,0,238)";
+		ctx.font = "80px Arial";
+		ctx.fillText("Play", 200, 300);
+		console.log("play");
+
+	 
+		if((mouseIsDown && sound) == true)
+		{
+			playPop();
+		
+			sound = false;
+			start = false;
+			ctx.clearRect(0,0,800,600);
+		}
+	}
+	else
+	{
+		ctx.fillStyle = "rgb(0,0,0)";
+		ctx.font = "80px Arial";
+		ctx.fillText("Play", 200, 300);
+		console.log("play else");
 	}
 
 }
