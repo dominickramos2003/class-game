@@ -314,14 +314,19 @@ function drawMap()
 			var x = j * 25;
 			var y = (i*25) + 50;
 			
-				if(playerX + playerW >= x && playerX+ playerW <= x + 23 &&
+				if(playerX >= x && playerX<= x + 23 &&
 				playerY >= y && playerY <= y + 23)
 				{
 					if(map[i][j+1] != 0)
 					{
 						collisionDetected = true;
-						falling = false;
+						if(!falling)
+						{
 						playerX -= 1;
+						}
+						<!-- upPressed = false; -->
+						<!-- leftPressed = false; -->
+						<!-- console.log("left"); -->
 					}
 					else
 					{
@@ -381,13 +386,13 @@ function drawMap()
 			
 			
 			ctx.fillStyle = "rgb(0,0,255)"
-			if(map[i][j] == 0)
+			if(map[i][j] == 0   )
 			{
 
 			}
-			else if(map[i][j] == 1)
+			else if(map[i][j] == 1 && map[i][j + 1] == 1 )
 			{
-				ctx.fillRect(x, y, 25,2 );
+				ctx.fillRect(x + playerW, y, 25 ,2 );
 			}
 			
 		}
