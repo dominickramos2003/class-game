@@ -313,9 +313,8 @@ function drawMap()
 		{
 			var x = j * 25;
 			var y = (i*25) + 50;
-			if(rightPressed)
-			{
-				if(playerX >= x && playerX <= x + 23 &&
+			
+				if(playerX + playerW >= x && playerX+ playerW <= x + 23 &&
 				playerY >= y && playerY <= y + 23)
 				{
 					if(map[i][j+1] != 0)
@@ -329,9 +328,7 @@ function drawMap()
 						collisionDetected = false;
 					}
 				}
-			}
-			if(leftPressed)
-			{
+			
 				if(playerX >= x && playerX <= x + 23 &&
 				playerY >= y && playerY <= y + 23)
 				{
@@ -346,7 +343,7 @@ function drawMap()
 						collisionDetected = false;
 					}
 				}
-			}
+			
 			if(upPressed)
 			{
 				if(playerX >= x && playerX <= x + 23 &&
