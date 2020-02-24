@@ -306,12 +306,24 @@ function gravity()
 	}
 }
 
+function setup() 
+{
+	x2 = 1;
+	changeDirection = false;
+}
+
 function drawEnemies()
 {
 	ctx.fillStyle = "#7B241C";
 	ctx.fillRect(210,352,25,25);
-	x2 = 1;
-	changeDirection = false;
+	if(x>width)
+	{
+		changeDirection = true
+	}
+	else if (x<=0)
+	{
+		changeDirection = false
+	}
 }
 
 function drawMap()
@@ -407,17 +419,6 @@ function drawMap()
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
