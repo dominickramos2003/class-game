@@ -55,8 +55,6 @@ var jumpHight = 100;
 var jumpTime = 100;
 var pX = 400;
 var pY = 300;
-var enemies = [];
-var x2 = 0;
 
 var falling = true;
 var upPressed = false;
@@ -306,25 +304,6 @@ function gravity()
 	}
 }
 
-function setup() 
-{
-	x2 = 1;
-	changeDirection = false;
-}
-
-function drawEnemies()
-{
-	ctx.fillStyle = "#7B241C";
-	ctx.fillRect(210,352,25,25);
-	if(x>width)
-	{
-		changeDirection = true
-	}
-	else if (x<=0)
-	{
-		changeDirection = false
-	}
-}
 
 function drawMap()
 {
@@ -422,6 +401,17 @@ function drawMap()
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 function draw()
 {
 	if(start)
@@ -446,7 +436,6 @@ function draw()
 		controls();
 		gravity();
 		drawMap();
-		drawEnemies();
 		console.log("coliscollisionDetected "+collisionDetected);
 		console.log("falling " + falling);
 	}
