@@ -61,6 +61,8 @@ var pY = 300;
 var enemies = [];
 var x2 = 210;
 var y2 = 352;
+var deathX = 0;
+var deathY = 0;
 
 var falling = true;
 var upPressed = false;
@@ -350,9 +352,12 @@ function enemyCollision()
 {
 	if(playerX + playerW >= x2 && playerX + playerW <= x2 + 70 && y2 == playerY + playerH)
 	{
+		deathX = playerX;
+		deathY = playerY;
 		console.log("ouch");
-		playerX = 100;
-		playerY = 500;
+		playerX = 30;
+		playerY = 485;
+		ctx.clearRect(deathX-1,deathY-1,35,35);
 	}
 }
 
