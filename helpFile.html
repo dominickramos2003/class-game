@@ -308,7 +308,7 @@ function gravity()
 
 function setup() 
 {
-	x2 = 1;
+	x2 = 210;
 	changeDirection = false;
 }
 
@@ -327,10 +327,12 @@ function drawEnemies()
 	if (x2>=210 && changeDirection == false)
 	{
 		x2=x2+1
+		ctx.clearRect(x2-2, 352, 25, 25);
 	}
 	else if(changeDirection == true)
 	{
 		x2=x2-1
+		ctx.clearRect(x2+2, 352, 25, 25);
 	}
 }
 
