@@ -346,6 +346,16 @@ function drawEnemies()
 		}
 }
 
+function enemyCollision()
+{
+	if(playerX + playerW >= x2 && playerX + playerW <= x2 + 70 && y2 == playerY + playerH)
+	{
+		console.log("ouch");
+		playerX = 100;
+		playerY = 500;
+	}
+}
+
 function drawMap()
 {
 	for(var i = 0; i < map.length; i++)
@@ -467,6 +477,7 @@ function draw()
 		gravity();
 		drawMap();
 		drawEnemies();
+		enemyCollision();
 		console.log("coliscollisionDetected "+collisionDetected);
 		console.log("falling " + falling);
 	}
