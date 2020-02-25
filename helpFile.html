@@ -57,6 +57,7 @@ var pX = 400;
 var pY = 300;
 var enemies = [];
 var x2 = 210;
+var y2 = 352;
 
 var falling = true;
 var upPressed = false;
@@ -309,31 +310,37 @@ function gravity()
 function setup() 
 {
 	x2 = 210;
+	y2 = 352;
 	changeDirection = false;
 }
 
 function drawEnemies()
 {
+	ctx.clearRect(x2-1,y2-1,30,30);
 	ctx.fillStyle = "#7B241C";
-	ctx.fillRect(x2,352,25,25);
-	if(x2>=280)
-	{
-		changeDirection = true
-	}
-	else if (x2<=210)
-	{
-		changeDirection = false
-	}
-	if (x2>=210 && changeDirection == false)
-	{
-		x2=x2+1
-		ctx.clearRect(x2-2, 352, 25, 25);
-	}
-	else if(changeDirection == true)
-	{
-		x2=x2-1
-		ctx.clearRect(x2+2, 352, 25, 25);
-	}
+	ctx.fillRect(x2,y2,25,25);
+		if(x2>=280)
+		{
+			changeDirection = true
+			// going left
+		}
+		else if (x2<=210)
+		{
+			changeDirection = false
+			// going right
+		}
+		if (x2>=210 && changeDirection == false)
+		{
+			x2=x2+1
+			// move right
+			//ctx.clearRect(x2-2, 352, 25, 25);
+		}
+		else if(changeDirection == true)
+		{
+			x2=x2-1
+			// move left
+			//ctx.clearRect(x2+2, 352, 25, 25);
+		}
 }
 
 function drawMap()
