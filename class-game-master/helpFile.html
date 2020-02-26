@@ -1,0 +1,507 @@
+<html>
+<head>
+	<style>
+	*{padding: 0; margin:0;}
+	canvas{ background: #7a7a7a; display: block; margin: 0 auto;}
+	</style>
+</head>
+
+<body>
+<canvas id= "myCanvas" width="800" height="600"></canvas>
+<script type="text/javascript">
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
+document.addEventListener("mousemove", mouseMoveHandler, false);
+canvas.addEventListener("mousedown", getPosition, false);
+canvas.addEventListener("mouseup", getPosition2, false);
+var map = [
+[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+[1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1],
+[1,0,1,0,1,1,0,1,1,0,0,1,0,1,1,0,1,0,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1],
+[1,0,1,0,0,1,0,1,0,1,0,1,0,1,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,1],
+[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+[0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+[1,0,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,0,1,1],
+[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1],
+[1,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,1,1],
+[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1],
+[1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1]
+];
+
+
+
+
+var help1 = new Image(); help1.src = "icons8-help-50 (1).png";
+var help2 = new Image(); help2.src = "icons8-help-50.png";
+var helpSc = new Image(); helpSc.src = "helpScreen.png";
+var settingsArrow = new Image(); settingsArrow.src = "arrow.png";
+
+
+var playerX = 200;
+var playerY = 200;
+var playerH = 29; 
+var playerW = 29;
+var fallSpeed = 1;
+var speed = 1;
+var jumpHight = 100;
+var jumpTime = 100;
+var pX = 400;
+var pY = 300;
+var enemies = [];
+var x2 = 210;
+var y2 = 352;
+var deathX = 0;
+var deathY = 0;
+var enemyDied = false;
+
+var falling = true;
+var upPressed = false;
+var downPressed = false;
+var leftPressed = false;
+var rightPressed = false;
+var collisionDetected = false;
+var start = true;
+var help = false;
+var mouseIsDown = false;
+var sound = true;
+
+
+function getPosition(event)
+{
+mouseIsDown = true;
+}
+function getPosition2(event){
+mouseIsDown = false;
+}
+
+function playPop()
+{
+var pop = new Audio();
+pop.src = "pop.wav";
+pop.play();
+}
+function getPosition(event)
+{
+mouseIsDown = true;
+}
+function getPosition2(event){
+mouseIsDown = false;
+}
+
+function mouseMoveHandler(e) 
+{
+    pX = e.clientX - canvas.offsetLeft;
+    pY = e.clientY - canvas.offsetTop;
+}
+
+function keyDownHandler(e){
+	
+	if(e.keyCode == 38)
+	{
+		upPressed = true;
+	}
+	if(e.keyCode == 40)
+	{
+		downPressed = true;
+	}
+	if(e.keyCode == 37)
+	{
+		leftPressed = true;	
+	}
+	if(e.keyCode == 39)
+	{
+		rightPressed = true;
+	}
+	if(e.keyCode == 32)
+	{
+		spacePressed = true;
+	}
+}
+function keyUpHandler(e){
+	
+	if(e.keyCode == 38)
+	{
+		upPressed = false;
+	}
+	if(e.keyCode == 40)
+	{
+		downPressed = false;
+	}
+	if(e.keyCode == 37)
+	{
+		leftPressed = false;
+	}
+	if(e.keyCode == 39)
+	{
+		rightPressed = false;
+	}
+}
+function controls()
+{
+	if(rightPressed)
+	{
+		playerX +=speed;
+	}
+	if(leftPressed)
+	{
+		playerX -=speed;
+	}
+	if(upPressed && jumpTime >=0)
+	{
+		playerY -=2
+		jumpTime -=1;
+	}
+}
+
+
+
+function startScreen()
+{
+ctx.font = "125px Arial";
+ctx.fillStyle = "rgb(0,0,0)"
+ctx.fillText("NAME", 130, 100);
+ctx.font = "80px Arial";
+ctx.fillStyle = "rgb(238,238,238)";
+
+
+	ctx.fillStyle = "rgb(100,100,100)";
+	<!-- ctx.fillRect(200, 440, 335, 70); -->
+	ctx.fillStyle = "rgb(200,200,200)";
+	if(pX >= 750 && pX <= 800 && pY >= 550 && pY <= 600 )
+	{
+		ctx.fillStyle = "rgb(238,238,238)";
+		ctx.font = "50px Arial";
+		ctx.drawImage(help1,750,550);
+	 
+		if(mouseIsDown)
+		{
+			help = true;
+		}
+	}
+	else
+	{
+		ctx.fillStyle = "rgb(0,0,0)"
+		ctx.font = "50px Arial";
+		ctx.drawImage(help2,750, 550);
+	}
+		if(pX >= 200 && pX <= 360 && pY >= 220&& pY <= 300)
+	{
+		ctx.fillStyle = "rgb(238,0,238)";
+		ctx.font = "80px Arial";
+		ctx.fillText("Play", 200, 300);
+		console.log("play");
+
+	 
+		if((mouseIsDown && sound) == true)
+		{
+			playPop();
+		
+			sound = false;
+			start = false;
+			ctx.clearRect(0,0,800,600);
+		}
+	}
+	else
+	{
+		ctx.fillStyle = "rgb(0,0,0)";
+		ctx.font = "80px Arial";
+		ctx.fillText("Play", 200, 300);
+		console.log("play else");
+	}
+
+}
+function helpScreen()
+{
+		
+		ctx.drawImage(helpSc, 0, 0);
+	if(pX >= 200 && pX <= 285 && pY >= 525 && pY <= 585 )
+	{
+	ctx.fillStyle = "rgb(238,238,238)";
+	 ctx.font = "50px Arial";
+		if(mouseIsDown)
+		{
+			howWin = true;
+		}
+	}
+	else
+	{
+		ctx.fillStyle = "rgb(0,0,0)"
+		ctx.font = "50px Arial";
+
+	}
+	ctx.drawImage(settingsArrow, 15, 500);
+	if(pX >= 15 && pX <= 95 && pY >= 500 && pY <= 580 && mouseIsDown)
+	{
+		ctx.clearRect(0,0,800,600);
+		startScreen();
+		help = false;
+	}
+
+	
+	//ctx.fillRect(25, 15, 50, 50);
+	//25
+
+}
+function howWinScreen()
+{
+	
+	if(pX >= 25 && pX <= 75 && pY >= 15 && pY <= 65 )
+	{
+		ctx.fillStyle = "rgb(238,238,238)";
+		ctx.font = "50px Arial";
+	 
+
+
+	 
+		if(mouseIsDown)
+		{
+			//howWin = false;
+			help = false;
+		}
+	}
+	else 
+	{
+		ctx.fillStyle = "rgb(0,0,0)"
+		ctx.font = "50px Arial";
+		
+
+	}
+}
+
+function gravity()
+{
+	ctx.clearRect(playerX-1,playerY-1,35,35);
+	ctx.fillStyle = "rgb(255,0,255)"
+	ctx.fillRect(playerX,playerY,playerH,playerW);
+	if(playerY + playerH > 600)
+	{
+		falling = false;
+		playerY = 600 - playerH;
+		
+	}
+	else
+	{
+		falling = true;
+	}
+	if(falling)
+	{
+		playerY += fallSpeed;
+	}
+	if( playerX <= 0)
+	{
+		leftPressed= false;
+		
+	}
+	if(playerX + playerW >= 800)
+	{
+		rightPressed= false;
+	}
+	if(collisionDetected)
+	{
+		falling = false;
+	}
+}
+
+function setup() 
+{
+	x2 = 210;
+	y2 = 352;
+	changeDirection = false;
+}
+
+function drawEnemies()
+{
+	ctx.clearRect(x2-1,y2-1,30,30);
+	ctx.fillStyle = "#7B241C";
+	ctx.fillRect(x2,y2,25,25);
+		if(x2>=280)
+		{
+			changeDirection = true
+			// going left
+		}
+		else if (x2<=210)
+		{
+			changeDirection = false
+			// going right
+		}
+		if (x2>=210 && changeDirection == false)
+		{
+			x2=x2+1
+			// move right
+			//ctx.clearRect(x2-2, 352, 25, 25);
+		}
+		else if(changeDirection == true)
+		{
+			x2=x2-1
+			// move left
+			//ctx.clearRect(x2+2, 352, 25, 25);
+		}
+}
+
+function enemyCollision()
+{
+	if(playerX >= x2 && playerX <= x2 + playerW && playerY + 25 == y2)
+	{
+		enemyDied = true;
+	}
+	if(playerX + 25 >= x2 && playerX <= x2)
+	{
+		deathX = playerX;
+		deathY = playerY;
+		console.log("ouch");
+		playerX = 30;
+		playerY = 485;
+		ctx.clearRect(deathX-1,deathY-1,35,35);
+	}
+}
+
+function drawMap()
+{
+	for(var i = 0; i < map.length; i++)
+	{
+		for(var j = 0; j < map[i].length; j++)
+		{
+			var x = j * 25;
+			var y = (i*25) + 50;
+			
+				if(playerX >= x && playerX<= x + 23 &&
+				playerY >= y && playerY <= y + 23)
+				{
+					<!-- if(map[i][j+1] != 0) -->
+					<!-- { -->
+						<!-- collisionDetected = true; -->
+						
+						<!-- playerX -= 1; -->
+						
+						<!-- upPressed = false; -->
+						<!-- leftPressed = false; -->
+						<!-- console.log("left"); -->
+					<!-- } -->
+					<!-- else -->
+					<!-- { -->
+						<!-- collisionDetected = false; -->
+					<!-- } -->
+				}
+			
+				<!-- if(playerX >= x && playerX <= x + 23 && -->
+				<!-- playerY >= y && playerY <= y + 23) -->
+				<!-- { -->
+					<!-- if(map[i][j] != 0) -->
+					<!-- { -->
+						<!-- collisionDetected = true; -->
+						<!-- falling = false; -->
+						<!-- playerX += 1; -->
+					<!-- } -->
+					<!-- else -->
+					<!-- { -->
+						<!-- collisionDetected = false; -->
+					<!-- } -->
+				<!-- } -->
+			
+			if(upPressed)
+			{
+				if(playerX >= x && playerX <= x + 23 &&
+				playerY >= y && playerY <= y + 2)
+				{
+					if(map[i][j] != 0)
+					{
+						collisionDetected = true;
+						falling = false;
+						playerY += 1;
+					}
+					else
+					{
+						collisionDetected = false;
+					}
+				}
+			}
+			
+			
+			if(playerX >= x && playerX <= x + 24 &&
+			playerY >= y && playerY <= y + 24)
+			{
+				if(map[i + 1][j] != 0)
+				{
+					collisionDetected = true;
+					falling = false;
+					playerY -= 1;
+					jumpTime = jumpHight; 
+				}
+				else
+				{
+					collisionDetected = false;
+				}
+			}
+			
+			
+			ctx.fillStyle = "rgb(0,0,255)"
+			if(map[i][j] == 0   )
+			{
+
+			}
+			else if(map[i][j] == 1 && map[i][j + 1] == 1 )
+			{
+				ctx.fillRect(x + playerW, y, 25 ,2 );
+			}
+			
+		}
+	}
+}
+
+
+
+
+function draw()
+{
+	if(start)
+	{
+		ctx.clearRect(0,0,800,600);
+		if(help)
+		{
+			
+			helpScreen();
+			//if(howWin)
+		}
+		else
+		{
+			startScreen();
+			
+		}
+		
+	}
+	else
+	{
+		<!-- ctx.clearRect(0,0,800,600); -->
+		controls();
+		gravity();
+		drawMap();
+		if(enemyDied)
+		{
+			
+		}
+		else
+		{
+			drawEnemies();
+			enemyCollision();
+		}	
+		console.log("coliscollisionDetected "+collisionDetected);
+		console.log("falling " + falling);
+	}
+	
+}
+
+setInterval(draw, 2);
+<!-- setInterval(drawMap, 2); -->
+</script>
+</body>
