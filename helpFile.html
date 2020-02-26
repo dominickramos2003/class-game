@@ -351,11 +351,11 @@ function drawEnemies()
 
 function enemyCollision()
 {
-	if(playerX >= x2 && playerX <= x2 + playerW && playerY + 25 == y2)
+	if(playerX >= x2 && playerX <= x2 + playerW && playerY + 30 == y2)
 	{
 		enemyDied = true;
 	}
-	if(playerX + 25 >= x2 && playerX <= x2)
+	if(playerX + 25 >= x2 && playerX <= x2 && playerY - 5 <= y2 && playerY + 25 >= y2)
 	{
 		deathX = playerX;
 		deathY = playerY;
