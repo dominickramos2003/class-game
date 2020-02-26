@@ -358,7 +358,7 @@ function enemyCollision()
 		enemyDied = true;
 		ctx.clearRect(x2-1,y2-1,35,35);
 	}
-	if(playerX + 25 >= x2 && playerX <= x2 && playerY - 5 <= y2 && playerY + 25 >= y2)
+	if(playerX + 25 >= x2 && playerX <= x2 + 25 && playerY - 5 <= y2 && playerY + 25 >= y2)
 	{
 		deathX = playerX;
 		deathY = playerY;
