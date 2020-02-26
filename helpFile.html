@@ -63,6 +63,7 @@ var x2 = 210;
 var y2 = 352;
 var deathX = 0;
 var deathY = 0;
+var enemyDied = false;
 
 var falling = true;
 var upPressed = false;
@@ -350,7 +351,11 @@ function drawEnemies()
 
 function enemyCollision()
 {
-	if(playerX + playerW >= x2 && playerX + playerW <= x2 + 70 && y2 == playerY + playerH)
+	if(playerX >= x2 && playerX <= x2 + playerW && playerY + 25 == y2)
+	{
+		enemyDied = true;
+	}
+	if(playerX + 25 >= x2 && playerX <= x2)
 	{
 		deathX = playerX;
 		deathY = playerY;
@@ -481,8 +486,15 @@ function draw()
 		controls();
 		gravity();
 		drawMap();
-		drawEnemies();
-		enemyCollision();
+		if(enemyDied)
+		{
+			
+		}
+		else
+		{
+			drawEnemies();
+			enemyCollision();
+		}	
 		console.log("coliscollisionDetected "+collisionDetected);
 		console.log("falling " + falling);
 	}
