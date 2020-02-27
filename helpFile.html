@@ -76,6 +76,23 @@ var help = false;
 var mouseIsDown = false;
 var sound = true;
 
+//music
+var playSong = 0;
+var song1 = new Audio();
+song1.src = "organisms.wav";
+var song2 = new Audio();
+song2.src = "negentropy.wav";
+var song3 = new Audio();
+song3.src = "moonrise.wav";
+var song4 = new Audio();
+song4.src = "illustrated novel.wav";
+var song5 = new Audio();
+song5.src = "elipsis.wav";
+var song6 = new Audio();
+song6.src = "shipping lanes.wav";
+var song7 = new Audio();
+song7.src = "algorithms.wav";
+
 
 function getPosition(event)
 {
@@ -91,6 +108,42 @@ var pop = new Audio();
 pop.src = "pop.wav";
 pop.play();
 }
+
+function playSong1()
+{
+	song1.play();
+}
+
+function playSong2()
+{
+	song2.play();
+}
+
+function playSong3()
+{
+	song3.play();
+}
+
+function playSong4()
+{
+	song4.play();
+}
+
+function playSong5()
+{
+	song5.play();
+}
+
+function playSong6()
+{
+	song6.play();
+}
+
+function playSong7()
+{
+	song7.play();
+}
+
 function getPosition(event)
 {
 mouseIsDown = true;
@@ -451,7 +504,7 @@ function drawMap()
 			ctx.fillStyle = "rgb(0,0,255)"
 			if(map[i][j] == 0   )
 			{
-
+			
 			}
 			else if(map[i][j] == 1 && map[i][j + 1] == 1 )
 			{
@@ -462,8 +515,13 @@ function drawMap()
 	}
 }
 
-
-
+function musicStart()
+{
+	if(playerX >= 0)
+	{
+		playSong1();
+	}
+}
 
 function draw()
 {
@@ -489,6 +547,7 @@ function draw()
 		controls();
 		gravity();
 		drawMap();
+		musicStart();
 		if(enemyDied)
 		{
 			
@@ -498,8 +557,8 @@ function draw()
 			drawEnemies();
 			enemyCollision();
 		}	
-		console.log("coliscollisionDetected "+collisionDetected);
-		console.log("falling " + falling);
+		//console.log("coliscollisionDetected "+collisionDetected);
+		//console.log("falling " + falling);
 	}
 	
 }
