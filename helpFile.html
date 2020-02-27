@@ -46,6 +46,8 @@ var help1 = new Image(); help1.src = "icons8-help-50 (1).png";
 var help2 = new Image(); help2.src = "icons8-help-50.png";
 var helpSc = new Image(); helpSc.src = "helpScreen.png";
 var settingsArrow = new Image(); settingsArrow.src = "arrow.png";
+var speaker1 = new Image(); speaker1.src = "speaker1.png";
+var speaker2 = new Image(); speaker2.src = "speaker2.png";
 
 
 var playerX = 200;
@@ -64,6 +66,7 @@ var y2 = 352;
 var deathX = 0;
 var deathY = 0;
 var enemyDied = false;
+var mute = false;
 
 var falling = true;
 var upPressed = false;
@@ -218,7 +221,6 @@ function controls()
 }
 
 
-
 function startScreen()
 {
 ctx.font = "125px Arial";
@@ -227,6 +229,19 @@ ctx.fillText("NAME", 130, 100);
 ctx.font = "80px Arial";
 ctx.fillStyle = "rgb(238,238,238)";
 
+ctx.drawImage(speaker1, 2, 550);
+if(pX >= 2 && pX <= 52 && pY >= 550 && pY <= 600 && mute == false)
+	{
+		if(mouseIsDown)
+		{
+			mute = true;
+		}
+	}	
+
+if(mute)
+{
+	ctx.drawImage(speaker2, 2, 550);
+}	
 
 	ctx.fillStyle = "rgb(100,100,100)";
 	<!-- ctx.fillRect(200, 440, 335, 70); -->
@@ -517,7 +532,7 @@ function drawMap()
 
 function musicStart()
 {
-	if(playerX >= 0)
+	if(playerX >= 0 && mute == false)
 	{
 		playSong1();
 	}
