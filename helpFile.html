@@ -48,8 +48,8 @@ var helpSc = new Image(); helpSc.src = "helpScreen.png";
 var settingsArrow = new Image(); settingsArrow.src = "arrow.png";
 
 
-var playerX = 200;
-var playerY = 200;
+var playerX = 30;
+var playerY = 485;
 var playerH = 29; 
 var playerW = 29;
 var fallSpeed = 1;
@@ -75,6 +75,7 @@ var start = true;
 var help = false;
 var mouseIsDown = false;
 var sound = true;
+var runTime = 2000;
 
 //music
 var playSong = 0;
@@ -217,7 +218,63 @@ function controls()
 	}
 }
 
-
+function runingMan()
+{
+	ctx.clearRect(playerX-1,playerY-1,35,35);
+	ctx.fillStyle = "rgb(255,0,255)"
+	ctx.fillRect(playerX,playerY,playerH,playerW);
+	runTime -= 1;
+	if(runTime >= 1980)
+	{
+		rightPressed = true; 
+	}
+	else if(runTime >= 1900)
+	{
+		
+		upPressed = true;
+	}
+	else if(runTime >= 1850)
+	{
+		
+		rightPressed = false;
+		upPressed = false;
+	}
+	else if(runTime >= 1840)
+	{
+		upPressed = true;
+	}
+	else if(runTime >= 1775)
+	{
+		
+		rightPressed = true;
+		
+	}
+	else if(runTime >= 1700)
+	{
+		
+		rightPressed = false;
+		upPressed = false;
+	}
+	else if(runTime >= 1640)
+	{
+		rightPressed = true;
+		upPressed = true;
+	}
+	else 
+	{
+		rightPressed = true;
+		upPressed = false;
+	}
+	if(runTime <= 1170)
+	{
+		runTime = 2000;
+		playerX = 30;
+		playerY = 485;
+		
+	}
+	console.log(runTime);
+	
+}
 
 function startScreen()
 {
@@ -264,6 +321,9 @@ ctx.fillStyle = "rgb(238,238,238)";
 			sound = false;
 			start = false;
 			ctx.clearRect(0,0,800,600);
+			playerX = 30;
+			playerY = 485;
+			rightPressed = false;
 		}
 	}
 	else
@@ -274,6 +334,7 @@ ctx.fillStyle = "rgb(238,238,238)";
 		console.log("play else");
 	}
 	drawMap();
+	runingMan()
 }
 function helpScreen()
 {
@@ -526,8 +587,11 @@ function musicStart()
 
 function draw()
 {
+	controls();
+	gravity();
 	if(start)
 	{
+		
 		ctx.clearRect(0,0,800,600);
 		if(help)
 		{
@@ -545,8 +609,7 @@ function draw()
 	else
 	{
 		<!-- ctx.clearRect(0,0,800,600); -->
-		controls();
-		gravity();
+		
 		drawMap();
 		musicStart();
 		if(enemyDied)
