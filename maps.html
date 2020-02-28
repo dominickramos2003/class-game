@@ -69,7 +69,7 @@ var map3 = [
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -267,14 +267,8 @@ var map = [
 [1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1]
 ];
 
-var help1 = new Image(); help1.src = "icons8-help-50 (1).png";
-var help2 = new Image(); help2.src = "icons8-help-50.png";
-var helpSc = new Image(); helpSc.src = "helpScreen.png";
-var settingsArrow = new Image(); settingsArrow.src = "arrow.png";
-
-
-var playerX = 200;
-var playerY = 200;
+var playerX = 30;
+var playerY = 485;
 var playerH = 29; 
 var playerW = 29;
 var fallSpeed = 1;
@@ -283,18 +277,34 @@ var jumpHight = 100;
 var jumpTime = 100;
 var pX = 400;
 var pY = 300;
+var enemies = [];
+var x2 = 210;
+var y2 = 352;
+var deathX = 0;
+var deathY = 0;
+var runTime = 2000;
+var countSpace = 1;
+var x3 = 220;
+var x4 = 210;
+var enemyDied = false;
+var click = 0;
+var mute = false;
+var enimyRight = 200;
+var enLockX = 200;
 
 var falling = true;
 var upPressed = false;
 var downPressed = false;
 var leftPressed = false;
 var rightPressed = false;
-var spacePressed = false;
 var collisionDetected = false;
-var start = false;
+var start = true;
 var help = false;
 var mouseIsDown = false;
 var sound = true;
+var placeEnimy = true;
+var changeDirection = true;
+var spacePressed = false;
 var level1 = true;
 var level2 = false;
 var level3 = false;
@@ -418,7 +428,36 @@ function gravity()
 		falling = false;
 	}
 }
-
+function drawEnemies()
+{
+	ctx.clearRect(x2-1,y2-1,30,30);
+	ctx.fillStyle = "#7B241C";
+		ctx.fillRect(x2,y2,25,25);
+		if(x3 <= x2 && x2 <= x4 && changeDirection)
+		{
+			changeDirection = true;
+			console.log(x2 + ">"+ x3);
+			console.log(x2 +"<" + x4);
+		}
+		if(x4 < x2)
+		{
+			changeDirection = false;
+			
+		}
+		if(x3 > x2)
+		{
+			changeDirection = true;
+		}
+		if(changeDirection)
+		{
+			x2 +=1;
+		}
+		else
+		{
+			x2 -=1;
+		}
+		console.log(changeDirection);
+}
 
 function drawMap()
 {
@@ -534,47 +573,16 @@ function drawMap()
 		{
 			var x = j * 25;
 			var y = (i*25) + 50;
-			
-				if(playerX >= x && playerX<= x + 23 &&
-				playerY >= y && playerY <= y + 23)
-				{
-					<!-- if(map[i][j+1] != 0) -->
-					<!-- { -->
-						<!-- collisionDetected = true; -->
-						
-						<!-- playerX -= 1; -->
-						
-						<!-- upPressed = false; -->
-						<!-- leftPressed = false; -->
-						<!-- console.log("left"); -->
-					<!-- } -->
-					<!-- else -->
-					<!-- { -->
-						<!-- collisionDetected = false; -->
-					<!-- } -->
-				}
-			
-				<!-- if(playerX >= x && playerX <= x + 23 && -->
-				<!-- playerY >= y && playerY <= y + 23) -->
-				<!-- { -->
-					<!-- if(map[i][j] != 0) -->
-					<!-- { -->
-						<!-- collisionDetected = true; -->
-						<!-- falling = false; -->
-						<!-- playerX += 1; -->
-					<!-- } -->
-					<!-- else -->
-					<!-- { -->
-						<!-- collisionDetected = false; -->
-					<!-- } -->
-				<!-- } -->
-			
+			var eX = j * 25;
+			var eY = (i*25) + 50;
+			var eX2 = j * 25;
+			var eX3 = j * 25;
 			if(upPressed)
 			{
 				if(playerX >= x && playerX <= x + 23 &&
 				playerY >= y && playerY <= y + 2)
 				{
-					if(map[i][j] != 0)
+					if(map[i][j] == 1)
 					{
 						collisionDetected = true;
 						falling = false;
@@ -586,12 +594,10 @@ function drawMap()
 					}
 				}
 			}
-			
-			
 			if(playerX >= x && playerX <= x + 24 &&
 			playerY >= y && playerY <= y + 24)
 			{
-				if(map[i + 1][j] != 0)
+				if(map[i + 1][j] == 1)
 				{
 					collisionDetected = true;
 					falling = false;
@@ -604,15 +610,35 @@ function drawMap()
 				}
 			}
 			
-			
+			//countSpace = 1;
 			ctx.fillStyle = "rgb(0,0,255)"
 			if(map[i][j] == 0   )
 			{
-
+			
 			}
 			else if(map[i][j] == 1 && map[i][j + 1] == 1 )
 			{
 				ctx.fillRect(x + playerW, y, 25 ,2 );
+			}
+			else if(map[i][j] == 2)
+			{
+				x3 = eX;
+				if(placeEnimy)
+				{
+				x2 = eX;
+				y2 = eY;
+				
+				
+				changeDirection = true;
+				placeEnimy = false;
+				}
+			}
+			else if(map[i][j] == 3 )
+			{
+				
+				x4 = eX;
+				
+				drawEnemies();
 			}
 			
 		}
@@ -641,7 +667,7 @@ function draw()
 		<!-- ctx.clearRect(0,0,800,600); -->
 		controls();
 		gravity();
-
+		
 		
 		
 		
