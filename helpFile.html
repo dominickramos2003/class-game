@@ -70,6 +70,7 @@ var countSpace = 1;
 var x3 = 220;
 var x4 = 210;
 var enemyDied = false;
+var click = 0;
 var mute = false;
 var enimyRight = 200;
 var enLockX = 200;
@@ -217,7 +218,13 @@ function controls()
 		jumpTime -=1;
 	}
 }
+<<<<<<< HEAD
 function runingMan()
+=======
+
+//start screen animation
+function runningMan()
+>>>>>>> 2fbe1023d81f4e349f42f3a6802a34fc7d8913ba
 {
 	ctx.clearRect(playerX-1,playerY-1,35,35);
 	ctx.fillStyle = "rgb(255,0,255)"
@@ -282,19 +289,24 @@ ctx.fillText("Climb", 230, 100);
 ctx.font = "80px Arial";
 ctx.fillStyle = "rgb(238,238,238)";
 
+//mute music stuff
 ctx.drawImage(speaker1, 2, 550);
-if(pX >= 2 && pX <= 52 && pY >= 550 && pY <= 600 && mute == false)
+if(pX >= 2 && pX <= 52 && pY >= 550 && pY <= 600 && mouseIsDown)
 	{
-		if(mouseIsDown)
+		if(mute == false)
 		{
 			mute = true;
 		}
-	}	
-
+	}
 if(mute)
 {
 	ctx.drawImage(speaker2, 2, 550);
 }	
+else
+{
+	ctx.drawImage(speaker1, 2, 550);
+}
+	
 
 	ctx.fillStyle = "rgb(100,100,100)";
 	<!-- ctx.fillRect(200, 440, 335, 70); -->
@@ -322,7 +334,7 @@ if(mute)
 		ctx.fillStyle = "rgb(42.7, 42.7, 42.7)";
 		ctx.font = "80px Arial";
 		ctx.fillText("Play", 330, 374);
-		console.log("play");
+		//console.log("play");
 
 	 
 		if((mouseIsDown && sound) == true)
@@ -342,10 +354,10 @@ if(mute)
 		ctx.fillStyle = "rgb(0,0,0)";
 		ctx.font = "80px Arial";
 		ctx.fillText("Play", 330, 374);
-		console.log("play else");
+		//console.log("play else");
 	}
 	drawMap();
-	runingMan()
+	runningMan()
 }
 function helpScreen()
 {
@@ -464,11 +476,21 @@ function drawEnemies()
 		}
 		if(changeDirection)
 		{
+<<<<<<< HEAD
 			x2 +=1;
+=======
+			x2=x2+1
+			// move right
+>>>>>>> 2fbe1023d81f4e349f42f3a6802a34fc7d8913ba
 		}
 		else
 		{
+<<<<<<< HEAD
 			x2 -=1;
+=======
+			x2=x2-1
+			// move left
+>>>>>>> 2fbe1023d81f4e349f42f3a6802a34fc7d8913ba
 		}
 		console.log(changeDirection);
 }
@@ -486,7 +508,6 @@ function enemyCollision()
 	{
 		deathX = playerX;
 		deathY = playerY;
-		console.log("ouch");
 		playerX = 30;
 		playerY = 485;
 		ctx.clearRect(deathX-1,deathY-1,35,35);
@@ -579,7 +600,7 @@ function musicStart()
 {
 	if(playerX >= 0 && mute == false)
 	{
-		playSong1();
+		playSong2();
 	}
 }
 
