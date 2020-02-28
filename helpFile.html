@@ -66,6 +66,7 @@ var y2 = 352;
 var deathX = 0;
 var deathY = 0;
 var enemyDied = false;
+var click = 0;
 var mute = false;
 
 var falling = true;
@@ -221,7 +222,7 @@ function controls()
 	}
 }
 
-
+//start screen animation
 function runingMan()
 {
 	ctx.clearRect(playerX-1,playerY-1,35,35);
@@ -276,7 +277,7 @@ function runingMan()
 		playerY = 485;
 		
 	}
-	console.log(runTime);
+	//console.log(runTime);
 	
 }
 
@@ -289,19 +290,24 @@ ctx.fillText("Climb", 230, 100);
 ctx.font = "80px Arial";
 ctx.fillStyle = "rgb(238,238,238)";
 
+//mute music stuff
 ctx.drawImage(speaker1, 2, 550);
-if(pX >= 2 && pX <= 52 && pY >= 550 && pY <= 600 && mute == false)
+if(pX >= 2 && pX <= 52 && pY >= 550 && pY <= 600 && mouseIsDown)
 	{
-		if(mouseIsDown)
+		if(mute == false)
 		{
 			mute = true;
 		}
-	}	
-
+	}
 if(mute)
 {
 	ctx.drawImage(speaker2, 2, 550);
 }	
+else
+{
+	ctx.drawImage(speaker1, 2, 550);
+}
+	
 
 	ctx.fillStyle = "rgb(100,100,100)";
 	<!-- ctx.fillRect(200, 440, 335, 70); -->
@@ -329,7 +335,7 @@ if(mute)
 		ctx.fillStyle = "rgb(42.7, 42.7, 42.7)";
 		ctx.font = "80px Arial";
 		ctx.fillText("Play", 330, 374);
-		console.log("play");
+		//console.log("play");
 
 	 
 		if((mouseIsDown && sound) == true)
@@ -349,7 +355,7 @@ if(mute)
 		ctx.fillStyle = "rgb(0,0,0)";
 		ctx.font = "80px Arial";
 		ctx.fillText("Play", 330, 374);
-		console.log("play else");
+		//console.log("play else");
 	}
 	drawMap();
 	runingMan()
@@ -599,7 +605,7 @@ function musicStart()
 {
 	if(playerX >= 0 && mute == false)
 	{
-		playSong1();
+		playSong2();
 	}
 }
 
