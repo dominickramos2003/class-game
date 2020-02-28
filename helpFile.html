@@ -478,13 +478,11 @@ function drawEnemies()
 		{
 			x2=x2+1
 			// move right
-			//ctx.clearRect(x2-2, 352, 25, 25);
 		}
 		else if(changeDirection == true)
 		{
 			x2=x2-1
 			// move left
-			//ctx.clearRect(x2+2, 352, 25, 25);
 		}
 }
 
@@ -501,7 +499,6 @@ function enemyCollision()
 	{
 		deathX = playerX;
 		deathY = playerY;
-		console.log("ouch");
 		playerX = 30;
 		playerY = 485;
 		ctx.clearRect(deathX-1,deathY-1,35,35);
