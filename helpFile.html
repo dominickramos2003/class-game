@@ -49,9 +49,6 @@ var map8 = [];
 var map9 = [];
 var map10 = [];
 
-
-
-
 var help1 = new Image(); help1.src = "icons8-help-50 (1).png";
 var help2 = new Image(); help2.src = "icons8-help-50.png";
 var helpSc = new Image(); helpSc.src = "helpScreen.png";
@@ -59,7 +56,6 @@ var settingsArrow = new Image(); settingsArrow.src = "arrow.png";
 var speaker1 = new Image(); speaker1.src = "speaker1.png";
 var speaker2 = new Image(); speaker2.src = "speaker2.png";
 var gameName = new Image(); gameName.src = "game name.png";
-
 
 var playerX = 30;
 var playerY = 485;
@@ -112,7 +108,6 @@ var level8 = false;
 var level9 = false;
 var level10 = false;
 
-
 //music
 var playSong = 0;
 var song1 = new Audio();
@@ -130,64 +125,43 @@ song6.src = "shipping lanes.wav";
 var song7 = new Audio();
 song7.src = "algorithms.wav";
 
-
-function getPosition(event)
-{
-mouseIsDown = true;
+function getPosition(event){
+	mouseIsDown = true;
 }
 function getPosition2(event){
-mouseIsDown = false;
+	mouseIsDown = false;	
 }
-function playPop()
-{
-var pop = new Audio();
-pop.src = "pop.wav";
-pop.play();
+function playPop(){
+	var pop = new Audio();
+	pop.src = "pop.wav";
+	pop.play();
 }
-function playSong1()
-{
+function playSong1(){
 	song1.play();
 }
-function playSong2()
-{
+function playSong2(){
 	song2.play();
 }
-function playSong3()
-{
+function playSong3(){
 	song3.play();
 }
-function playSong4()
-{
+function playSong4(){
 	song4.play();
 }
-function playSong5()
-{
+function playSong5(){
 	song5.play();
 }
-function playSong6()
-{
+function playSong6(){
 	song6.play();
 }
-function playSong7()
-{
+function playSong7(){
 	song7.play();
 }
-function getPosition(event)
-{
-mouseIsDown = true;
-}
-function getPosition2(event){
-mouseIsDown = false;
-}
-function mouseMoveHandler(e) 
-{
+function mouseMoveHandler(e){
     pX = e.clientX - canvas.offsetLeft;
     pY = e.clientY - canvas.offsetTop;
 }
-
-
-function keyDownHandler(e){
-	
+function keyDownHandler(e){	
 	if(e.keyCode == 38)
 	{
 		upPressed = true;
@@ -214,7 +188,6 @@ function keyDownHandler(e){
 	}
 }
 function keyUpHandler(e){
-	
 	if(e.keyCode == 38)
 	{
 		upPressed = false;
@@ -248,9 +221,7 @@ function controls()
 		jumpTime -=1;
 	}
 }
-
 function runningMan()
-
 {
 	ctx.clearRect(playerX-1,playerY-1,35,35);
 	ctx.fillStyle = "rgb(255,0,255)"
@@ -309,38 +280,33 @@ function runningMan()
 }
 function startScreen()
 {
-ctx.drawImage(gameName,315, 35);
-ctx.font = "80px Arial";
-ctx.fillStyle = "rgb(238,238,238)";
+	ctx.drawImage(gameName,315, 35);
+	ctx.font = "80px Arial";
+	ctx.fillStyle = "rgb(238,238,238)";
 
-//mute music stuff
-ctx.drawImage(speaker1, 2, 550);
-if(pX >= 2 && pX <= 52 && pY >= 550 && pY <= 600 && mouseIsDown)
-	{
-		if(mute == false)
-		{
-			mute = true;
-		}
-	}
-if(mute)
-{
-	ctx.drawImage(speaker2, 2, 550);
-}	
-else
-{
+	//mute music stuff
 	ctx.drawImage(speaker1, 2, 550);
-}
-	
-
-	ctx.fillStyle = "rgb(100,100,100)";
-	<!-- ctx.fillRect(200, 440, 335, 70); -->
+	if(pX >= 2 && pX <= 52 && pY >= 550 && pY <= 600 && mouseIsDown)
+		{
+			if(mute == false)
+			{
+				mute = true;
+			}
+		}
+	if(mute)
+	{
+		ctx.drawImage(speaker2, 2, 550);
+	}	
+	else
+	{
+		ctx.drawImage(speaker1, 2, 550);
+	}
 	ctx.fillStyle = "rgb(200,200,200)";
 	if(pX >= 750 && pX <= 800 && pY >= 550 && pY <= 600 )
 	{
 		ctx.fillStyle = "rgb(238,238,238)";
 		ctx.font = "50px Arial";
 		ctx.drawImage(help1,750,550);
-	 
 		if(mouseIsDown)
 		{
 			help = true;
@@ -352,19 +318,13 @@ else
 		ctx.font = "50px Arial";
 		ctx.drawImage(help2,750, 550);
 	}
-		if(pX >= 330 && pX <= 460 && pY >= 174&& pY <= 394)
+	if(pX >= 330 && pX <= 460 && pY >= 174&& pY <= 394)
 	{
-	;
 		ctx.fillStyle = "rgb(42.7, 42.7, 42.7)";
 		ctx.font = "80px Arial";
 		ctx.fillText("Play", 330, 374);
-		//console.log("play");
-
-	 
 		if((mouseIsDown && sound) == true)
 		{
-			
-		
 			sound = false;
 			start = false;
 			ctx.clearRect(0,0,800,600);
@@ -379,19 +339,17 @@ else
 		ctx.fillStyle = "rgb(0,0,0)";
 		ctx.font = "80px Arial";
 		ctx.fillText("Play", 330, 374);
-		//console.log("play else");
 	}
 	drawMap();
 	runningMan()
 }
 function helpScreen()
-{
-		
-		ctx.drawImage(helpSc, 0, 0);
+{	
+	ctx.drawImage(helpSc, 0, 0);
 	if(pX >= 200 && pX <= 285 && pY >= 525 && pY <= 585 )
 	{
-	ctx.fillStyle = "rgb(238,238,238)";
-	 ctx.font = "50px Arial";
+		ctx.fillStyle = "rgb(238,238,238)";
+		ctx.font = "50px Arial";
 		if(mouseIsDown)
 		{
 			howWin = true;
@@ -410,36 +368,6 @@ function helpScreen()
 		startScreen();
 		help = false;
 	}
-
-	
-	//ctx.fillRect(25, 15, 50, 50);
-	//25
-
-}
-function howWinScreen()
-{
-	
-	if(pX >= 25 && pX <= 75 && pY >= 15 && pY <= 65 )
-	{
-		ctx.fillStyle = "rgb(238,238,238)";
-		ctx.font = "50px Arial";
-	 
-
-
-	 
-		if(mouseIsDown)
-		{
-			//howWin = false;
-			help = false;
-		}
-	}
-	else 
-	{
-		ctx.fillStyle = "rgb(0,0,0)"
-		ctx.font = "50px Arial";
-		
-
-	}
 }
 function gravity()
 {
@@ -450,7 +378,6 @@ function gravity()
 	{
 		falling = false;
 		playerY = 600 - playerH;
-		
 	}
 	else
 	{
@@ -463,7 +390,6 @@ function gravity()
 	if( playerX <= 0)
 	{
 		leftPressed= false;
-		
 	}
 	if(playerX + playerW >= 800)
 	{
@@ -704,42 +630,34 @@ map7 = [
 [1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 ];
 }
-
 function drawEnemies()
 {
 	ctx.clearRect(x2-1,y2-1,30,30);
 	ctx.fillStyle = "#7B241C";
-		ctx.fillRect(x2,y2,25,25);
-		if(x3 <= x2 && x2 <= x4 && changeDirection)
-		{
-			changeDirection = true;
-			<!-- console.log(x2 + ">"+ x3); -->
-			<!-- console.log(x2 +"<" + x4); -->
-		}
-		if(x4 < x2)
-		{
-			changeDirection = false;
-			
-		}
-		if(x3 > x2)
-		{
-			changeDirection = true;
-		}
-		if(changeDirection)
-		{
-			x2 +=1;
-		}
-		else
-		{
-			x2 -=1;
-		}
-		<!-- console.log(changeDirection); -->
+	ctx.fillRect(x2,y2,25,25);
+	if(x3 <= x2 && x2 <= x4 && changeDirection)
+	{
+		changeDirection = true;
+	}
+	if(x4 < x2)
+	{
+		changeDirection = false;
+	}
+	if(x3 > x2)
+	{
+		changeDirection = true;
+	}
+	if(changeDirection)
+	{
+		x2 +=1;
+	}
+	else
+	{
+		x2 -=1;
+	}
 }
-
 function enemyCollision()
 {
-	<!-- if(playerX >= x2 && playerX <= x2 + playerW && playerY + playerH == y2) -->
-
 	if (playerX <= x2 + enimyW && playerX + playerW >=  x2 && playerY + playerH == y2)
 	{
 		deathX = x2;
@@ -757,37 +675,10 @@ function enemyCollision()
 		playPop();
 		console.log("die");
 	}
-	var pxw = 0
-	pxw = playerX + playerW;
-	var pyh = playerY + playerH;
-	<!-- console.log(playerX +"<="+ x2 +"&&"+ pxw +">="+ x2 +"&&"+ playerY +">="+ y2 +"&&"+ pyh + "<="+ y2); -->
-	var q = false;
-	var w = false;
-	var e = false;
-	var r = false;
-	if(playerX <= x2 )
-	{
-		q = true;
-	}
-	if(playerX + playerW >=  x2 + enimyW)
-	{
-		w = true;
-	}
-	if(playerY <= y2 )
-	{
-		e = true;
-	}
-	if(playerY + playerH - 5 >=  y2 + enimyH)
-	{
-		r = true;
-	}
-	
-	console.log(q+" "+w+" "+e+" "+r);
 }
-
 function drawMap()
 {
-		if(spacePressed)
+	if(spacePressed)
 	{
 		if(level10)
 		{
@@ -851,47 +742,47 @@ function drawMap()
 		spacePressed = false;
 		ctx.clearRect(0,0,800,600);
 	}
-		Maps();
-		if(level1)
-		{
-			map = map1;
-		}
-		if(level2)
-		{
-			map = map2;
-		}
-		if(level3)
-		{
-			map = map3;
-		}
-		if(level4)
-		{
-			map = map4;
-		}
-		if(level5)
-		{
-			map = map5;
-		}
-		if(level6)
-		{
-			map = map6;
-		}
-		if(level7)
-		{
-			map = map7;
-		}
-		if(level8)
-		{
-			map = map8;
-		}
-		if(level9)
-		{
-			map = map9;
-		}
-		if(level10)
-		{
-			map = map10;
-		}
+	Maps();
+	if(level1)
+	{
+		map = map1;
+	}
+	if(level2)
+	{
+		map = map2;
+	}
+	if(level3)
+	{
+		map = map3;
+	}
+	if(level4)
+	{
+		map = map4;
+	}
+	if(level5)
+	{
+		map = map5;
+	}
+	if(level6)
+	{
+		map = map6;
+	}
+	if(level7)
+	{
+		map = map7;
+	}
+	if(level8)
+	{
+		map = map8;
+	}
+	if(level9)
+	{
+		map = map9;
+	}
+	if(level10)
+	{
+		map = map10;
+	}
 	for(var i = 0; i < map.length; i++)
 	{
 		for(var j = 0; j < map[i].length; j++)
@@ -934,8 +825,6 @@ function drawMap()
 					collisionDetected = false;
 				}
 			}
-			
-			//countSpace = 1;
 			ctx.fillStyle = "rgb(0,0,255)"
 			if(map[i][j] == 0   )
 			{
@@ -950,25 +839,21 @@ function drawMap()
 				x3 = eX;
 				if(placeEnimy)
 				{
-				x2 = eX;
-				y2 = eY;
-				
-				
-				changeDirection = true;
-				placeEnimy = false;
+					x2 = eX;
+					y2 = eY;
+					changeDirection = true;
+					placeEnimy = false;
 				}
 			}
 			else if(map[i][j] == 3 )
 			{
-				
 				x4 = eX;
 				if(!enemyDied)
 				{
-				drawEnemies();
-				enemyCollision();
+					drawEnemies();
+					enemyCollision();
 				}
 			}
-			
 		}
 	}
 }
@@ -986,44 +871,24 @@ function draw()
 	Maps();
 	if(start)
 	{
-		
 		ctx.clearRect(0,0,800,600);
 		if(help)
 		{
-			
 			helpScreen();
-			//if(howWin)
 		}
 		else
 		{
 			startScreen();
-			
 		}
-		
 	}
 	else
 	{
-		<!-- ctx.clearRect(0,0,800,600); -->
-		
 		drawMap();
 		musicStart();
-		<!-- console.log(countSpace); -->
-		if(enemyDied)
-		{
-			
-		}
-		else
-		{
-			<!-- drawEnemies(); -->
-			<!-- enemyCollision(); -->
-		}	
-		//console.log("coliscollisionDetected "+collisionDetected);
-		//console.log("falling " + falling);
 	}
-	
 }
 
 setInterval(draw, 2);
-<!-- setInterval(drawMap, 2); -->
+
 </script>
 </body>
