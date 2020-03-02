@@ -29,7 +29,7 @@ var map = [
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,1,1,0,0,0,0,1,1,1,1,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0],
@@ -38,6 +38,16 @@ var map = [
 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0]
 ];
+var map1 = [];
+var map2 = [];
+var map3 = [];
+var map4 = [];
+var map5 = [];
+var map6 = [];
+var map7 = [];
+var map8 = [];
+var map9 = [];
+var map10 = [];
 
 
 
@@ -55,6 +65,8 @@ var playerX = 30;
 var playerY = 485;
 var playerH = 29; 
 var playerW = 29;
+var enimyH = 25;
+var enimyW = 25;
 var fallSpeed = 1;
 var speed = 1;
 var jumpHight = 100;
@@ -81,6 +93,7 @@ var upPressed = false;
 var downPressed = false;
 var leftPressed = false;
 var rightPressed = false;
+var spacePressed = false;
 var collisionDetected = false;
 var start = true;
 var help = false;
@@ -88,6 +101,16 @@ var mouseIsDown = false;
 var sound = true;
 var placeEnimy = true;
 var changeDirection = true;
+var level1 = false;
+var level2 = false;
+var level3 = false;
+var level4 = false;
+var level5 = false;
+var level6 = false;
+var level7 = false;
+var level8 = false;
+var level9 = false;
+var level10 = false;
 
 
 //music
@@ -161,6 +184,8 @@ function mouseMoveHandler(e)
     pX = e.clientX - canvas.offsetLeft;
     pY = e.clientY - canvas.offsetTop;
 }
+
+
 function keyDownHandler(e){
 	
 	if(e.keyCode == 38)
@@ -178,6 +203,10 @@ function keyDownHandler(e){
 	if(e.keyCode == 39)
 	{
 		rightPressed = true;
+	}
+	if(e.keyCode == 32)
+	{
+		spacePressed = true;
 	}
 	if(e.keyCode == 32)
 	{
@@ -342,6 +371,7 @@ else
 			playerX = 30;
 			playerY = 485;
 			rightPressed = false;
+			level1 = true;
 		}
 	}
 	else
@@ -446,7 +476,7 @@ function gravity()
 }
 function Maps()
 {
-var map1 = [
+map1 = [
 [0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -468,7 +498,7 @@ var map1 = [
 [0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 ];
-var map2 = [
+ map2 = [
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0],
@@ -491,7 +521,7 @@ var map2 = [
 [1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0]
 ];
 
-var map3 = [
+map3 = [
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -513,8 +543,7 @@ var map3 = [
 [0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 ];
-
-var map4 = [
+map4 = [
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -537,7 +566,7 @@ var map4 = [
 [1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 ];
 
-var map5 = [
+ map5 = [
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -560,7 +589,7 @@ var map5 = [
 [1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 ];
 
-var map6 = [
+ map6 = [
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -583,7 +612,7 @@ var map6 = [
 [1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 ];
 
-var map7 = [
+map7 = [
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -606,7 +635,7 @@ var map7 = [
 [1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 ];
 
-var map8 = [
+ map8 = [
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -629,7 +658,7 @@ var map8 = [
 [1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 ];
 
-var map9 = [
+ map9 = [
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -652,7 +681,7 @@ var map9 = [
 [1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 ];
 
-var map10 = [
+ map10 = [
 [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 [1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1],
 [1,0,1,0,1,1,0,1,1,0,0,1,0,1,1,0,1,0,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1],
@@ -684,8 +713,8 @@ function drawEnemies()
 		if(x3 <= x2 && x2 <= x4 && changeDirection)
 		{
 			changeDirection = true;
-			console.log(x2 + ">"+ x3);
-			console.log(x2 +"<" + x4);
+			<!-- console.log(x2 + ">"+ x3); -->
+			<!-- console.log(x2 +"<" + x4); -->
 		}
 		if(x4 < x2)
 		{
@@ -704,19 +733,21 @@ function drawEnemies()
 		{
 			x2 -=1;
 		}
-		console.log(changeDirection);
+		<!-- console.log(changeDirection); -->
 }
 
 function enemyCollision()
 {
-	if(playerX >= x2 && playerX <= x2 + playerW && playerY + playerH == y2)
+	<!-- if(playerX >= x2 && playerX <= x2 + playerW && playerY + playerH == y2) -->
+
+	if (playerX <= x2 + enimyW && playerX + playerW >=  x2 && playerY + playerH == y2)
 	{
 		deathX = x2;
 		deathY = y2;
 		enemyDied = true;
 		ctx.clearRect(x2-1,y2-1,35,35);
 	}
-	if(playerX + 25 >= x2 && playerX <= x2 + 25 && playerY - 5 <= y2 && playerY + 25 >= y2)
+	if(playerX <= x2 + enimyW && playerX + playerW >=  x2  && playerY <= y2 + enimyH && playerY + playerH - 10 >=  y2 )
 	{
 		deathX = playerX;
 		deathY = playerY;
@@ -724,11 +755,143 @@ function enemyCollision()
 		playerY = 485;
 		ctx.clearRect(deathX-1,deathY-1,35,35);
 		playPop();
+		console.log("die");
 	}
+	var pxw = 0
+	pxw = playerX + playerW;
+	var pyh = playerY + playerH;
+	<!-- console.log(playerX +"<="+ x2 +"&&"+ pxw +">="+ x2 +"&&"+ playerY +">="+ y2 +"&&"+ pyh + "<="+ y2); -->
+	var q = false;
+	var w = false;
+	var e = false;
+	var r = false;
+	if(playerX <= x2 )
+	{
+		q = true;
+	}
+	if(playerX + playerW >=  x2 + enimyW)
+	{
+		w = true;
+	}
+	if(playerY <= y2 )
+	{
+		e = true;
+	}
+	if(playerY + playerH - 5 >=  y2 + enimyH)
+	{
+		r = true;
+	}
+	
+	console.log(q+" "+w+" "+e+" "+r);
 }
 
 function drawMap()
 {
+		if(spacePressed)
+	{
+		if(level10)
+		{
+		ctx.fillRect(0,0,200,300)
+		}
+		if(level9)
+		{
+			level9 = false;
+			level10 = true;
+		}
+		if(level8)
+		{
+			level8 = false;
+			level9 = true;
+		}
+		if(level7)
+		{
+			level7 = false;
+			level8 = true;
+		}
+		if(level6)
+		{
+			level6 = false;
+			level7 = true;
+		}
+		if(level5)
+		{
+			level5 = false;
+			level6 = true;
+		}
+		if(level4)
+		{
+			level4 = false;
+			level5 = true;
+		}
+		if(level4)
+		{
+			level4 = false;
+			level5 = true;
+		}
+		if(level4)
+		{
+			level4 = false;
+			level5 = true;
+		}
+		if(level3)
+		{
+			level3 = false;
+			level4 = true;
+		}
+		if(level2)
+		{
+			level2 = false;
+			level3 = true;
+		}
+		if(level1)
+		{
+			level1 = false;
+			level2 = true;
+		}
+		spacePressed = false;
+		ctx.clearRect(0,0,800,600);
+	}
+		Maps();
+		if(level1)
+		{
+			map = map1;
+		}
+		if(level2)
+		{
+			map = map2;
+		}
+		if(level3)
+		{
+			map = map3;
+		}
+		if(level4)
+		{
+			map = map4;
+		}
+		if(level5)
+		{
+			map = map5;
+		}
+		if(level6)
+		{
+			map = map6;
+		}
+		if(level7)
+		{
+			map = map7;
+		}
+		if(level8)
+		{
+			map = map8;
+		}
+		if(level9)
+		{
+			map = map9;
+		}
+		if(level10)
+		{
+			map = map10;
+		}
 	for(var i = 0; i < map.length; i++)
 	{
 		for(var j = 0; j < map[i].length; j++)
@@ -799,15 +962,16 @@ function drawMap()
 			{
 				
 				x4 = eX;
-				
-				
+				if(!enemyDied)
+				{
+				drawEnemies();
+				enemyCollision();
+				}
 			}
-			
 			
 		}
 	}
 }
-
 function musicStart()
 {
 	if(playerX >= 0 && mute == false)
@@ -815,11 +979,11 @@ function musicStart()
 		playSong2();
 	}
 }
-
 function draw()
 {
 	controls();
 	gravity();
+	Maps();
 	if(start)
 	{
 		
@@ -843,15 +1007,15 @@ function draw()
 		
 		drawMap();
 		musicStart();
-		console.log(countSpace);
+		<!-- console.log(countSpace); -->
 		if(enemyDied)
 		{
 			
 		}
 		else
 		{
-			drawEnemies();
-			enemyCollision();
+			<!-- drawEnemies(); -->
+			<!-- enemyCollision(); -->
 		}	
 		//console.log("coliscollisionDetected "+collisionDetected);
 		//console.log("falling " + falling);
