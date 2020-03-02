@@ -48,6 +48,7 @@ var helpSc = new Image(); helpSc.src = "helpScreen.png";
 var settingsArrow = new Image(); settingsArrow.src = "arrow.png";
 var speaker1 = new Image(); speaker1.src = "speaker1.png";
 var speaker2 = new Image(); speaker2.src = "speaker2.png";
+var gameName = new Image(); gameName.src = "game name.png";
 
 
 var playerX = 30;
@@ -284,9 +285,7 @@ function runningMan()
 
 function startScreen()
 {
-ctx.font = "125px Arial";
-ctx.fillStyle = "rgb(0,0,0)"
-ctx.fillText("Climb", 230, 100);
+ctx.drawImage(gameName,315, 35);
 ctx.font = "80px Arial";
 ctx.fillStyle = "rgb(238,238,238)";
 
