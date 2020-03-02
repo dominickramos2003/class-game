@@ -709,7 +709,7 @@ function drawEnemies()
 
 function enemyCollision()
 {
-	if(playerX >= x2 && playerX <= x2 + playerW && playerY + playerH == y2)
+	if(playerX >= x2 - 30 && playerX <= x2 + playerW && playerY + playerH == y2)
 	{
 		deathX = x2;
 		deathY = y2;
