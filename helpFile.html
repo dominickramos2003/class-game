@@ -107,6 +107,8 @@ var jumpSprite4r = new Image(); jumpSprite4r.src = "jump sprite4r.png";
 var jumpSprite5r = new Image(); jumpSprite5r.src = "jump sprite5r.png";
 var pAnimationTimer = 0;
 var pAnimations = [];
+var sprite = 0;
+var currentSprite = 0;
 
 var falling = true;
 var upPressed = false;
@@ -245,9 +247,10 @@ function controls()
 		jumpTime -=1;
 	}
 }
+
 function runningMan()
 {
-	ctx.drawImage(sprite1r,playerX-1,playerY-1,35,35);
+	ctx.drawImage(sprite1r,playerX-1,playerY-1);
 	//ctx.fillStyle = "rgb(255,0,255)"
 	//ctx.fillRect(playerX,playerY,playerH,playerW);
 	runTime -= 1;
@@ -301,6 +304,33 @@ function runningMan()
 	}
 	//console.log(runTime);
 	
+}
+function playerAnimation()
+{
+	if(rightPressed == true)
+	{
+		sprite = 1;
+	}
+	if(leftPressed == true)
+	{
+		sprite = 2;
+	}
+	if(upPressed == true)
+	{
+		sprite = 3;
+	}
+	if(sprite = 3)
+	{
+		currentSprite = jumpSprite2r;
+	}
+	if(sprite = 2)
+	{
+		currentSprite = sprite1;
+	}
+	if(sprite = 1)
+	{
+		currentSprite = sprite1r;
+	}
 }
 function startScreen()
 {
@@ -395,7 +425,7 @@ function helpScreen()
 }
 function gravity()
 {
-	ctx.clearRect(sprite1r,playerX-1,playerY-1,35,35);
+	ctx.clearRect(currentSprite,playerX-1,playerY-1,35,35);
 	//ctx.fillStyle = "rgb(255,0,255)"
 	//ctx.fillRect(playerX,playerY,playerH,playerW);
 	if(playerY + playerH > 600)
@@ -424,6 +454,7 @@ function gravity()
 		falling = false;
 	}
 }
+
 function Maps()
 {
 map1 = [
@@ -899,6 +930,7 @@ function draw()
 {
 	controls();
 	gravity();
+	playerAnimation();
 	Maps();
 	if(start)
 	{
