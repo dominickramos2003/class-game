@@ -84,6 +84,32 @@ var mute = false;
 var enimyRight = 200;
 var enLockX = 200;
 
+//sprites
+var sprite1 = new Image(); sprite1.src = "sprite1.png";
+var sprite2 = new Image(); sprite2.src = "sprite2.png";
+var sprite3 = new Image(); sprite3.src = "sprite3.png";
+var sprite4 = new Image(); sprite4.src = "sprite4.png";
+var sprite5 = new Image(); sprite5.src = "sprite5.png";
+var sprite1r = new Image(); sprite1r.src = "sprite1r.png";
+var sprite2r = new Image(); sprite2r.src = "sprite2r.png";
+var sprite3r = new Image(); sprite3r.src = "sprite3r.png";
+var sprite4r = new Image(); sprite4r.src = "sprite4r.png";
+var sprite5r = new Image(); sprite5r.src = "sprite5r.png";
+var jumpSprite1 = new Image(); jumpSprite1.src = "jump sprite1.png";
+var jumpSprite2 = new Image(); jumpSprite2.src = "jump sprite2.png";
+var jumpSprite3 = new Image(); jumpSprite3.src = "jump sprite3.png";
+var jumpSprite4 = new Image(); jumpSprite4.src = "jump sprite4.png";
+var jumpSprite5 = new Image(); jumpSprite5.src = "jump sprite5.png";
+var jumpSprite1r = new Image(); jumpSprite1r.src = "jump sprite1r.png";
+var jumpSprite2r = new Image(); jumpSprite2r.src = "jump sprite2r.png";
+var jumpSprite3r = new Image(); jumpSprite3r.src = "jump sprite3r.png";
+var jumpSprite4r = new Image(); jumpSprite4r.src = "jump sprite4r.png";
+var jumpSprite5r = new Image(); jumpSprite5r.src = "jump sprite5r.png";
+var pAnimationTimer = 0;
+var pAnimations = [];
+var sprite = 0;
+var currentSprite = 0;
+
 var falling = true;
 var upPressed = false;
 var downPressed = false;
@@ -221,11 +247,12 @@ function controls()
 		jumpTime -=1;
 	}
 }
+
 function runningMan()
 {
-	ctx.clearRect(playerX-1,playerY-1,35,35);
-	ctx.fillStyle = "rgb(255,0,255)"
-	ctx.fillRect(playerX,playerY,playerH,playerW);
+	ctx.drawImage(sprite1r,playerX-1,playerY-1);
+	//ctx.fillStyle = "rgb(255,0,255)"
+	//ctx.fillRect(playerX,playerY,playerH,playerW);
 	runTime -= 1;
 	if(runTime >= 1980)
 	{
@@ -277,6 +304,33 @@ function runningMan()
 	}
 	//console.log(runTime);
 	
+}
+function playerAnimation()
+{
+	if(rightPressed == true)
+	{
+		sprite = 1;
+	}
+	if(leftPressed == true)
+	{
+		sprite = 2;
+	}
+	if(upPressed == true)
+	{
+		sprite = 3;
+	}
+	if(sprite = 3)
+	{
+		currentSprite = jumpSprite2r;
+	}
+	if(sprite = 2)
+	{
+		currentSprite = sprite1;
+	}
+	if(sprite = 1)
+	{
+		currentSprite = sprite1r;
+	}
 }
 function startScreen()
 {
@@ -371,9 +425,9 @@ function helpScreen()
 }
 function gravity()
 {
-	ctx.clearRect(playerX-1,playerY-1,35,35);
-	ctx.fillStyle = "rgb(255,0,255)"
-	ctx.fillRect(playerX,playerY,playerH,playerW);
+	ctx.clearRect(currentSprite,playerX-1,playerY-1,35,35);
+	//ctx.fillStyle = "rgb(255,0,255)"
+	//ctx.fillRect(playerX,playerY,playerH,playerW);
 	if(playerY + playerH > 600)
 	{
 		falling = false;
@@ -400,6 +454,7 @@ function gravity()
 		falling = false;
 	}
 }
+
 function Maps()
 {
 map1 = [
@@ -877,6 +932,7 @@ function draw()
 {
 	controls();
 	gravity();
+	playerAnimation();
 	Maps();
 	if(start)
 	{
