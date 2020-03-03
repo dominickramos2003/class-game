@@ -134,6 +134,55 @@ var level8 = false;
 var level9 = false;
 var level10 = false;
 
+
+
+var placeEnimyz = true;
+var collisionDetectedz = false;
+var changeDirectionz = true;
+var enimyHz = 25;
+var enimyWz = 25;
+var x2z= 210;
+var y2z = 352;
+var deathX = 0;
+var deathY = 0;
+var x3z = 220;
+var x4z = 210;
+var enemyDiedz = false;
+var placeEnimyq = true;
+var collisionDetectedq = false;
+var changeDirectionq = true;
+var enimyHq = 25;
+var enimyWq = 25;
+var x2q= 210;
+var y2q = 352;
+var x3q = 220;
+var x4q = 210;
+var enemyDiedq = false;
+var placeEnimym = true;
+var collisionDetectedm = false;
+var changeDirectionm = true;
+var enimyHm = 25;
+var enimyWm = 25;
+var x2m= 210;
+var y2m = 352;
+var deathX = 0;
+var deathY = 0;
+var x3m = 220;
+var x4m = 210;
+var enemyDiedm = false;
+var placeEnimyj = true;
+var collisionDetectedj = false;
+var changeDirectionj = true;
+var enimyHj = 25;
+var enimyWj = 25;
+var x2j= 210;
+var y2j = 352;
+var deathX = 0;
+var deathY = 0;
+var x3j = 220;
+var x4j = 210;
+var enemyDiedj = false;
+
 //music
 var playSong = 0;
 var song1 = new Audio();
@@ -721,6 +770,303 @@ function enemyCollision()
 		ctx.clearRect(x2-1,y2-1,35,35);
 	}
 	if(playerX <= x2 + enimyW && playerX + playerW >=  x2  && playerY <= y2 + enimyH && playerY + playerH - 10 >=  y2 )
+	{
+		deathX = playerX;
+		deathY = playerY;
+		playerX = 30;
+		playerY = 485;
+		ctx.clearRect(deathX-1,deathY-1,35,35);
+		playPop();
+		console.log("die");
+	}
+}
+
+function enimys56()
+{
+	for(var i = 0; i < map.length; i++)
+	{
+		for(var j = 0; j < map[i].length; j++)
+		{
+			var eX = j * 25;
+			var eY = (i*25) + 50;
+			if(map[i][j] == 5)
+			{
+				x3z = eX;
+				if(placeEnimyz)
+				{
+					x2z = eX;
+					y2z = eY;
+					changeDirectionz = true;
+					placeEnimyz = false;
+					console.log("look here");
+					
+				}
+			}
+			else if(map[i][j] == 6)
+			{
+				x4z = eX;
+				
+			}
+		}
+	}
+	ctx.clearRect(x2z-1,y2z-1,30,30);
+	ctx.fillStyle = "#7B241C";
+	ctx.fillRect(x2z,y2z,25,25);
+	if(x3z <= x2z && x2z <= x4z && changeDirectionz)
+	{
+		changeDirectionz = true;
+		
+	}
+	if(x4z < x2z)
+	{
+		changeDirectionz = false;
+		
+	}
+	if(x3z > x2z)
+	{
+		changeDirectionz = true;
+		
+	}
+	if(changeDirectionz)
+	{
+		
+		x2z +=1;
+	}
+	else
+	{
+		x2z -=1;
+		
+	}
+	if (playerX <= x2z + enimyWz && playerX + playerW >=  x2z && playerY + playerH == y2z)
+	{
+		deathX = x2z;
+		deathY = y2z;
+		enemyDiedz = true;
+		ctx.clearRect(x2z-1,y2z-1,35,35);
+	}
+	if(playerX <= x2z + enimyWz && playerX + playerW >=  x2z  && playerY <= y2z + enimyHz && playerY + playerH - 10 >=  y2z )
+	{
+		deathX = playerX;
+		deathY = playerY;
+		playerX = 30;
+		playerY = 485;
+		ctx.clearRect(deathX-1,deathY-1,35,35);
+		playPop();
+		console.log("die");
+	}
+}
+function enimys78()
+{
+	for(var i = 0; i < map.length; i++)
+	{
+		for(var j = 0; j < map[i].length; j++)
+		{
+			var eX = j * 25;
+			var eY = (i*25) + 50;
+			if(map[i][j] == 7)
+			{
+				x3q = eX;
+				if(placeEnimyq)
+				{
+					x2q = eX;
+					y2q = eY;
+					changeDirectionq = true;
+					placeEnimyq = false;
+					console.log("look here");
+					
+				}
+			}
+			else if(map[i][j] == 8)
+			{
+				x4q = eX;
+				
+			}
+		}
+	}
+	ctx.clearRect(x2q-1,y2q-1,30,30);
+	ctx.fillStyle = "#7B241C";
+	ctx.fillRect(x2q,y2q,25,25);
+	if(x3q <= x2q && x2q <= x4q && changeDirectionq)
+	{
+		changeDirectionq = true;
+		
+	}
+	if(x4q < x2q)
+	{
+		changeDirectionq = false;
+		
+	}
+	if(x3q > x2q)
+	{
+		changeDirectionq = true;
+		
+	}
+	if(changeDirectionq)
+	{
+		
+		x2q +=1;
+	}
+	else
+	{
+		x2q -=1;
+		
+	}
+	if (playerX <= x2q + enimyWq && playerX + playerW >=  x2q && playerY + playerH == y2q)
+	{
+		deathX = x2q;
+		deathY = y2q;
+		enemyDiedq = true;
+		ctx.clearRect(x2q-1,y2q-1,35,35);
+	}
+	if(playerX <= x2q + enimyWq && playerX + playerW >=  x2q  && playerY <= y2q + enimyHq && playerY + playerH - 10 >=  y2q )
+	{
+		deathX = playerX;
+		deathY = playerY;
+		playerX = 30;
+		playerY = 485;
+		ctx.clearRect(deathX-1,deathY-1,35,35);
+		playPop();
+		console.log("die");
+	}
+}
+function enimys910()
+{
+	for(var i = 0; i < map.length; i++)
+	{
+		for(var j = 0; j < map[i].length; j++)
+		{
+			var eX = j * 25;
+			var eY = (i*25) + 50;
+			if(map[i][j] == 9)
+			{
+				x3m = eX;
+				if(placeEnimym)
+				{
+					x2m = eX;
+					y2m = eY;
+					changeDirectionm = true;
+					placeEnimym = false;
+					console.log("look here");
+					
+				}
+			}
+			else if(map[i][j] == 10)
+			{
+				x4m = eX;
+				
+			}
+		}
+	}
+	ctx.clearRect(x2m-1,y2m-1,30,30);
+	ctx.fillStyle = "#7B241C";
+	ctx.fillRect(x2m,y2m,25,25);
+	if(x3m <= x2m && x2m <= x4m && changeDirectionm)
+	{
+		changeDirectionm = true;
+		
+	}
+	if(x4m < x2m)
+	{
+		changeDirectionm = false;
+		
+	}
+	if(x3m > x2m)
+	{
+		changeDirectionm = true;
+		
+	}
+	if(changeDirectionm)
+	{
+		
+		x2m +=1;
+	}
+	else
+	{
+		x2m -=1;
+		
+	}
+	if (playerX <= x2m + enimyWm && playerX + playerW >=  x2m && playerY + playerH == y2m)
+	{
+		deathX = x2m;
+		deathY = y2m;
+		enemyDiedm = true;
+		ctx.clearRect(x2m-1,y2m-1,35,35);
+	}
+	if(playerX <= x2m + enimyWm && playerX + playerW >=  x2m  && playerY <= y2m + enimyHm && playerY + playerH - 10 >=  y2m )
+	{
+		deathX = playerX;
+		deathY = playerY;
+		playerX = 30;
+		playerY = 485;
+		ctx.clearRect(deathX-1,deathY-1,35,35);
+		playPop();
+		console.log("die");
+	}
+}
+function enimys1112()
+{
+	for(var i = 0; i < map.length; i++)
+	{
+		for(var j = 0; j < map[i].length; j++)
+		{
+			var eX = j * 25;
+			var eY = (i*25) + 50;
+			if(map[i][j] == 11)
+			{
+				x3j = eX;
+				if(placeEnimyj)
+				{
+					x2j = eX;
+					y2j = eY;
+					changeDirectionj = true;
+					placeEnimyj = false;
+					console.log("look here");
+					
+				}
+			}
+			else if(map[i][j] == 12)
+			{
+				x4j = eX;
+				
+			}
+		}
+	}
+	ctx.clearRect(x2j-1,y2j-1,30,30);
+	ctx.fillStyle = "#7B241C";
+	ctx.fillRect(x2j,y2j,25,25);
+	if(x3j <= x2j && x2j <= x4j && changeDirectionj)
+	{
+		changeDirectionj = true;
+		
+	}
+	if(x4j < x2j)
+	{
+		changeDirectionj = false;
+		
+	}
+	if(x3j > x2j)
+	{
+		changeDirectionj = true;
+		
+	}
+	if(changeDirectionj)
+	{
+		
+		x2j +=1;
+	}
+	else
+	{
+		x2j -=1;
+		
+	}
+	if (playerX <= x2j + enimyWj && playerX + playerW >=  x2j && playerY + playerH == y2j)
+	{
+		deathX = x2j;
+		deathY = y2j;
+		enemyDiedj = true;
+		ctx.clearRect(x2j-1,y2j-1,35,35);
+	}
+	if(playerX <= x2j + enimyWj && playerX + playerW >=  x2j  && playerY <= y2j + enimyHj && playerY + playerH - 10 >=  y2j )
 	{
 		deathX = playerX;
 		deathY = playerY;
