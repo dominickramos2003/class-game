@@ -2,7 +2,7 @@
 <head>
 	<style>
 	*{padding: 0; margin:0;}
-	canvas{ background: #eee; display: block; margin: 0 auto;}
+	canvas{ background: #7a7a7a; display: block; margin: 0 auto;}
 	</style>
 </head>
 
@@ -11,430 +11,388 @@
 <script type="text/javascript">
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
-document.addEventListener("keydown", keyDownHandler, false);
-document.addEventListener("keyup", keyUpHandler, false);
-document.addEventListener("mousemove", mouseMoveHandler, false);
-canvas.addEventListener("mousedown", getPosition, false);
-canvas.addEventListener("mouseup", getPosition2, false);
 var map = [
-[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-[1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1],
-[1,0,1,0,1,1,0,1,1,0,0,1,0,1,1,0,1,0,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1],
-[1,0,1,0,0,1,0,1,0,1,0,1,0,1,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,1],
-[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
-[0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
-[1,0,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,0,1,1],
-[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1],
-[1,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,1,1],
-[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1],
-[1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1]
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,9,0,0,0,0,0,0,0,0,0,0,0,10,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0,0,6,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,11,0,0,0,0,0,0,0,0,0,0,0,0,12,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 ];
 
-var help1 = new Image(); help1.src = "icons8-help-50 (1).png";
-var help2 = new Image(); help2.src = "icons8-help-50.png";
-var helpSc = new Image(); helpSc.src = "helpScreen.png";
-
-
-var playerX = 200;
-var playerY = 200;
+var playerX = 30;
+var playerY = 485;
 var playerH = 29; 
 var playerW = 29;
-var fallSpeed = 1;
-var speed = 1;
-var jumpHight = 100;
-var jumpTime = 100;
-var pX = 400;
-var pY = 300;
 
-var falling = true;
-var upPressed = false;
-var downPressed = false;
-var leftPressed = false;
-var rightPressed = false;
-var collisionDetected = false;
-var start = true;
-var help = false;
-var mouseIsDown = false;
-var sound = true;
+var placeEnimyz = true;
+var collisionDetectedz = false;
+var changeDirectionz = true;
+var enimyHz = 25;
+var enimyWz = 25;
+var x2z= 210;
+var y2z = 352;
+var deathX = 0;
+var deathY = 0;
+var x3z = 220;
+var x4z = 210;
+var enemyDiedz = false;
 
+var placeEnimyq = true;
+var collisionDetectedq = false;
+var changeDirectionq = true;
+var enimyHq = 25;
+var enimyWq = 25;
+var x2q= 210;
+var y2q = 352;
+var x3q = 220;
+var x4q = 210;
+var enemyDiedq = false;
 
-function getPosition(event)
-{
-mouseIsDown = true;
-}
-function getPosition2(event){
-mouseIsDown = false;
-}
+var placeEnimym = true;
+var collisionDetectedm = false;
+var changeDirectionm = true;
+var enimyHm = 25;
+var enimyWm = 25;
+var x2m= 210;
+var y2m = 352;
+var deathX = 0;
+var deathY = 0;
+var x3m = 220;
+var x4m = 210;
+var enemyDiedm = false;
 
-function playPop()
-{
-var pop = new Audio();
-pop.src = "pop.wav";
-pop.play();
-}
-function getPosition(event)
-{
-mouseIsDown = true;
-}
-function getPosition2(event){
-mouseIsDown = false;
-}
-
-function mouseMoveHandler(e) 
-{
-    pX = e.clientX - canvas.offsetLeft;
-    pY = e.clientY - canvas.offsetTop;
-}
-
-function keyDownHandler(e){
-	
-	if(e.keyCode == 38)
-	{
-		upPressed = true;
-	}
-	if(e.keyCode == 40)
-	{
-		downPressed = true;
-	}
-	if(e.keyCode == 37)
-	{
-		leftPressed = true;	
-	}
-	if(e.keyCode == 39)
-	{
-		rightPressed = true;
-	}
-	if(e.keyCode == 32)
-	{
-		spacePressed = true;
-	}
-}
-function keyUpHandler(e){
-	
-	if(e.keyCode == 38)
-	{
-		upPressed = false;
-	}
-	if(e.keyCode == 40)
-	{
-		downPressed = false;
-	}
-	if(e.keyCode == 37)
-	{
-		leftPressed = false;
-	}
-	if(e.keyCode == 39)
-	{
-		rightPressed = false;
-	}
-}
-function controls()
-{
-	if(rightPressed)
-	{
-		playerX +=speed;
-	}
-	if(leftPressed)
-	{
-		playerX -=speed;
-	}
-	if(upPressed && jumpTime >=0)
-	{
-		playerY -=2
-		jumpTime -=1;
-	}
-}
-
-
-
-function startScreen()
-{
-ctx.font = "125px Arial";
-ctx.fillStyle = "rgb(0,0,0)"
-ctx.fillText("NAME", 130, 100);
-ctx.font = "80px Arial";
-ctx.fillStyle = "rgb(238,238,238)";
-	if(pX >= 200 && pX <= 360 && pY >= 220&& pY <= 300)
-	{
-		ctx.fillStyle = "rgb(238,0,238)";
-		ctx.font = "80px Arial";
-		ctx.fillText("Play", 200, 300);
-		console.log("play");
-
-	 
-		if((mouseIsDown && sound) == true)
-		{
-			playPop();
-		
-			sound = false;
-			start = false;
-		}
-	}
-	else
-	{
-		ctx.fillStyle = "rgb(0,0,0)";
-		ctx.font = "80px Arial";
-		ctx.fillText("Play", 200, 300);
-		console.log("play else");
-	}
-
-	ctx.fillStyle = "rgb(100,100,100)";
-	<!-- ctx.fillRect(200, 440, 335, 70); -->
-	ctx.fillStyle = "rgb(200,200,200)";
-	if(pX >= 750 && pX <= 800 && pY >= 550 && pY <= 600 )
-	{
-		ctx.fillStyle = "rgb(238,238,238)";
-		ctx.font = "50px Arial";
-		ctx.drawImage(help1,750,550);
-	 
-		if(mouseIsDown)
-		{
-			help = true;
-		}
-	}
-	else
-	{
-		ctx.fillStyle = "rgb(0,0,0)"
-		ctx.font = "50px Arial";
-		ctx.drawImage(help2,750, 550);
-	}
-
-}
-function helpScreen()
-{
-		
-		ctx.drawImage(helpSc, 0, 0);
-	if(pX >= 200 && pX <= 285 && pY >= 525 && pY <= 585 )
-	{
-	ctx.fillStyle = "rgb(238,238,238)";
-	 ctx.font = "50px Arial";
-		if(mouseIsDown)
-		{
-			howWin = true;
-		}
-	}
-	else
-	{
-		ctx.fillStyle = "rgb(0,0,0)"
-		ctx.font = "50px Arial";
-
-	}
-
-	
-	//ctx.fillRect(25, 15, 50, 50);
-	//25
-
-}
-function howWinScreen()
-{
-	
-	if(pX >= 25 && pX <= 75 && pY >= 15 && pY <= 65 )
-	{
-		ctx.fillStyle = "rgb(238,238,238)";
-		ctx.font = "50px Arial";
-	 
-
-
-	 
-		if(mouseIsDown)
-		{
-			howWin = false;
-			help = false;
-		}
-	}
-	else 
-	{
-		ctx.fillStyle = "rgb(0,0,0)"
-		ctx.font = "50px Arial";
-		
-
-	}
-}
-
-function gravity()
-{
-	ctx.clearRect(playerX-1,playerY-1,35,35);
-	ctx.fillStyle = "rgb(255,0,255)"
-	ctx.fillRect(playerX,playerY,playerH,playerW);
-	if(playerY + playerH > 600)
-	{
-		falling = false;
-		playerY = 600 - playerH;
-		
-	}
-	else
-	{
-		falling = true;
-	}
-	if(falling)
-	{
-		playerY += fallSpeed;
-	}
-	if( playerX <= 0)
-	{
-		leftPressed= false;
-		
-	}
-	if(playerX + playerW >= 800)
-	{
-		rightPressed= false;
-	}
-	if(collisionDetected)
-	{
-		falling = false;
-	}
-}
-
-
-function drawMap()
+var placeEnimyj = true;
+var collisionDetectedj = false;
+var changeDirectionj = true;
+var enimyHj = 25;
+var enimyWj = 25;
+var x2j= 210;
+var y2j = 352;
+var deathX = 0;
+var deathY = 0;
+var x3j = 220;
+var x4j = 210;
+var enemyDiedj = false;
+function enimys56()
 {
 	for(var i = 0; i < map.length; i++)
 	{
 		for(var j = 0; j < map[i].length; j++)
 		{
-			var x = j * 25;
-			var y = (i*25) + 50;
-			if(rightPressed)
+			var eX = j * 25;
+			var eY = (i*25) + 50;
+			if(map[i][j] == 5)
 			{
-				if(playerX >= x && playerX <= x + 23 &&
-				playerY >= y && playerY <= y + 23)
+				x3z = eX;
+				if(placeEnimyz)
 				{
-					if(map[i][j+1] != 0)
-					{
-						collisionDetected = true;
-						falling = false;
-						playerX -= 1;
-					}
-					else
-					{
-						collisionDetected = false;
-					}
+					x2z = eX;
+					y2z = eY;
+					changeDirectionz = true;
+					placeEnimyz = false;
+					console.log("look here");
+					
 				}
 			}
-			if(leftPressed)
+			else if(map[i][j] == 6)
 			{
-				if(playerX >= x && playerX <= x + 23 &&
-				playerY >= y && playerY <= y + 23)
-				{
-					if(map[i][j] != 0)
-					{
-						collisionDetected = true;
-						falling = false;
-						playerX += 1;
-					}
-					else
-					{
-						collisionDetected = false;
-					}
-				}
+				x4z = eX;
+				
 			}
-			if(upPressed)
-			{
-				if(playerX >= x && playerX <= x + 23 &&
-				playerY >= y && playerY <= y + 2)
-				{
-					if(map[i][j] != 0)
-					{
-						collisionDetected = true;
-						falling = false;
-						playerY += 1;
-					}
-					else
-					{
-						collisionDetected = false;
-					}
-				}
-			}
-			
-			
-			if(playerX >= x && playerX <= x + 24 &&
-			playerY >= y && playerY <= y + 24)
-			{
-				if(map[i + 1][j] != 0)
-				{
-					collisionDetected = true;
-					falling = false;
-					playerY -= 1;
-					jumpTime = jumpHight; 
-				}
-				else
-				{
-					collisionDetected = false;
-				}
-			}
-			
-			
-			ctx.fillStyle = "rgb(0,0,255)"
-			if(map[i][j] == 0)
-			{
-
-			}
-			else if(map[i][j] == 1)
-			{
-				ctx.fillRect(x, y, 25,2 );
-			}
-			
 		}
 	}
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function draw()
-{
-	if(start)
+	ctx.clearRect(x2z-1,y2z-1,30,30);
+	ctx.fillStyle = "#7B241C";
+	ctx.fillRect(x2z,y2z,25,25);
+	if(x3z <= x2z && x2z <= x4z && changeDirectionz)
 	{
-		ctx.clearRect(0,0,800,600);
-		if(help)
-		{
-			
-			helpScreen();
-			if(howWin)
-			{
-				howWinScreen();
-			}
-		}
-		else
-		{
-			startScreen();
-			
-		}
+		changeDirectionz = true;
 		
+	}
+	if(x4z < x2z)
+	{
+		changeDirectionz = false;
+		
+	}
+	if(x3z > x2z)
+	{
+		changeDirectionz = true;
+		
+	}
+	if(changeDirectionz)
+	{
+		
+		x2z +=1;
 	}
 	else
 	{
-		<!-- ctx.clearRect(0,0,800,600); -->
-		controls();
-		gravity();
-		drawMap();
-		console.log("coliscollisionDetected "+collisionDetected);
-		console.log("falling " + falling);
+		x2z -=1;
+		
 	}
-	
+	if (playerX <= x2z + enimyWz && playerX + playerW >=  x2z && playerY + playerH == y2z)
+	{
+		deathX = x2z;
+		deathY = y2z;
+		enemyDiedz = true;
+		ctx.clearRect(x2z-1,y2z-1,35,35);
+	}
+	if(playerX <= x2z + enimyWz && playerX + playerW >=  x2z  && playerY <= y2z + enimyHz && playerY + playerH - 10 >=  y2z )
+	{
+		deathX = playerX;
+		deathY = playerY;
+		playerX = 30;
+		playerY = 485;
+		ctx.clearRect(deathX-1,deathY-1,35,35);
+		playPop();
+		console.log("die");
+	}
+}
+function enimys78()
+{
+	for(var i = 0; i < map.length; i++)
+	{
+		for(var j = 0; j < map[i].length; j++)
+		{
+			var eX = j * 25;
+			var eY = (i*25) + 50;
+			if(map[i][j] == 7)
+			{
+				x3q = eX;
+				if(placeEnimyq)
+				{
+					x2q = eX;
+					y2q = eY;
+					changeDirectionq = true;
+					placeEnimyq = false;
+					console.log("look here");
+					
+				}
+			}
+			else if(map[i][j] == 8)
+			{
+				x4q = eX;
+				
+			}
+		}
+	}
+	ctx.clearRect(x2q-1,y2q-1,30,30);
+	ctx.fillStyle = "#7B241C";
+	ctx.fillRect(x2q,y2q,25,25);
+	if(x3q <= x2q && x2q <= x4q && changeDirectionq)
+	{
+		changeDirectionq = true;
+		
+	}
+	if(x4q < x2q)
+	{
+		changeDirectionq = false;
+		
+	}
+	if(x3q > x2q)
+	{
+		changeDirectionq = true;
+		
+	}
+	if(changeDirectionq)
+	{
+		
+		x2q +=1;
+	}
+	else
+	{
+		x2q -=1;
+		
+	}
+	if (playerX <= x2q + enimyWq && playerX + playerW >=  x2q && playerY + playerH == y2q)
+	{
+		deathX = x2q;
+		deathY = y2q;
+		enemyDiedq = true;
+		ctx.clearRect(x2q-1,y2q-1,35,35);
+	}
+	if(playerX <= x2q + enimyWq && playerX + playerW >=  x2q  && playerY <= y2q + enimyHq && playerY + playerH - 10 >=  y2q )
+	{
+		deathX = playerX;
+		deathY = playerY;
+		playerX = 30;
+		playerY = 485;
+		ctx.clearRect(deathX-1,deathY-1,35,35);
+		playPop();
+		console.log("die");
+	}
+}
+function enimys910()
+{
+	for(var i = 0; i < map.length; i++)
+	{
+		for(var j = 0; j < map[i].length; j++)
+		{
+			var eX = j * 25;
+			var eY = (i*25) + 50;
+			if(map[i][j] == 9)
+			{
+				x3m = eX;
+				if(placeEnimym)
+				{
+					x2m = eX;
+					y2m = eY;
+					changeDirectionm = true;
+					placeEnimym = false;
+					console.log("look here");
+					
+				}
+			}
+			else if(map[i][j] == 10)
+			{
+				x4m = eX;
+				
+			}
+		}
+	}
+	ctx.clearRect(x2m-1,y2m-1,30,30);
+	ctx.fillStyle = "#7B241C";
+	ctx.fillRect(x2m,y2m,25,25);
+	if(x3m <= x2m && x2m <= x4m && changeDirectionm)
+	{
+		changeDirectionm = true;
+		
+	}
+	if(x4m < x2m)
+	{
+		changeDirectionm = false;
+		
+	}
+	if(x3m > x2m)
+	{
+		changeDirectionm = true;
+		
+	}
+	if(changeDirectionm)
+	{
+		
+		x2m +=1;
+	}
+	else
+	{
+		x2m -=1;
+		
+	}
+	if (playerX <= x2m + enimyWm && playerX + playerW >=  x2m && playerY + playerH == y2m)
+	{
+		deathX = x2m;
+		deathY = y2m;
+		enemyDiedm = true;
+		ctx.clearRect(x2m-1,y2m-1,35,35);
+	}
+	if(playerX <= x2m + enimyWm && playerX + playerW >=  x2m  && playerY <= y2m + enimyHm && playerY + playerH - 10 >=  y2m )
+	{
+		deathX = playerX;
+		deathY = playerY;
+		playerX = 30;
+		playerY = 485;
+		ctx.clearRect(deathX-1,deathY-1,35,35);
+		playPop();
+		console.log("die");
+	}
+}
+function enimys1112()
+{
+	for(var i = 0; i < map.length; i++)
+	{
+		for(var j = 0; j < map[i].length; j++)
+		{
+			var eX = j * 25;
+			var eY = (i*25) + 50;
+			if(map[i][j] == 11)
+			{
+				x3j = eX;
+				if(placeEnimyj)
+				{
+					x2j = eX;
+					y2j = eY;
+					changeDirectionj = true;
+					placeEnimyj = false;
+					console.log("look here");
+					
+				}
+			}
+			else if(map[i][j] == 12)
+			{
+				x4j = eX;
+				
+			}
+		}
+	}
+	ctx.clearRect(x2j-1,y2j-1,30,30);
+	ctx.fillStyle = "#7B241C";
+	ctx.fillRect(x2j,y2j,25,25);
+	if(x3j <= x2j && x2j <= x4j && changeDirectionj)
+	{
+		changeDirectionj = true;
+		
+	}
+	if(x4j < x2j)
+	{
+		changeDirectionj = false;
+		
+	}
+	if(x3j > x2j)
+	{
+		changeDirectionj = true;
+		
+	}
+	if(changeDirectionj)
+	{
+		
+		x2j +=1;
+	}
+	else
+	{
+		x2j -=1;
+		
+	}
+	if (playerX <= x2j + enimyWj && playerX + playerW >=  x2j && playerY + playerH == y2j)
+	{
+		deathX = x2j;
+		deathY = y2j;
+		enemyDiedj = true;
+		ctx.clearRect(x2j-1,y2j-1,35,35);
+	}
+	if(playerX <= x2j + enimyWj && playerX + playerW >=  x2j  && playerY <= y2j + enimyHj && playerY + playerH - 10 >=  y2j )
+	{
+		deathX = playerX;
+		deathY = playerY;
+		playerX = 30;
+		playerY = 485;
+		ctx.clearRect(deathX-1,deathY-1,35,35);
+		playPop();
+		console.log("die");
+	}
+}
+function draw()
+{
+	ctx.clearRect(0,0,800,600);
+	enimys56()
+	enimys78()
+	enimys910()
+	enimys1112()
 }
 
 setInterval(draw, 2);
-<!-- setInterval(drawMap, 2); -->
 </script>
 </body>
