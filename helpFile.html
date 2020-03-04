@@ -81,6 +81,7 @@ var x4 = 210;
 var enemyDied = false;
 var click = 0;
 var mute = false;
+var intro = true;
 var enimyRight = 200;
 var enLockX = 200;
 
@@ -117,7 +118,7 @@ var leftPressed = false;
 var rightPressed = false;
 var spacePressed = false;
 var collisionDetected = false;
-var start = true;
+var start = false;
 var help = false;
 var mouseIsDown = false;
 var sound = true;
@@ -296,6 +297,19 @@ function controls()
 		jumpTime -=1;
 	}
 }
+
+function firstScreen()
+{
+	ctx.fillStyle = "rgb(42.7, 42.7, 42.7)";
+	ctx.font = "60px Arial";
+	ctx.fillText("Press Anywhere To Start", 70, 275);
+	if(mouseIsDown)
+	{
+		intro = false;
+		start = true;
+	}
+}
+
 function runningMan()
 {
 	ctx.drawImage(sprite1r,playerX-1,playerY-1);
@@ -442,7 +456,7 @@ function startScreen()
 		ctx.fillText("Play", 330, 374);
 	}
 	drawMap();
-	runningMan()
+	runningMan();
 }
 function helpScreen()
 {	
@@ -472,9 +486,11 @@ function helpScreen()
 }
 function gravity()
 {
+
 	if(!intro)
 	{
 	ctx.clearRect(playerX,playerY- playerH , playerW,playerH + 5);
+
 	ctx.drawImage(sprite1r,playerX,playerY-playerH);
 	}
 	//ctx.fillStyle = "rgb(255,0,255)"
@@ -1283,23 +1299,30 @@ function draw()
 	gravity();
 	playerAnimation();
 	Maps();
-	if(start)
+	if(intro)
 	{
-		ctx.clearRect(0,0,800,600);
-		if(help)
-		{
-			helpScreen();
-		}
-		else
-		{
-			startScreen();
-		}
+		firstScreen();
 	}
 	else
 	{
-		drawMap();
-		musicStart();
-	}
+		if(start)
+		{
+			ctx.clearRect(0,0,800,600);
+			if(help)
+			{
+				helpScreen();
+			}
+			else
+			{
+				startScreen();
+			}
+		}
+		else
+		{
+			drawMap();
+			musicStart();
+		}
+	}	
 }
 
 setInterval(draw, 2);
