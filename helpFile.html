@@ -382,7 +382,7 @@ function playerAnimation()
 }
 function startScreen()
 {
-	ctx.drawImage(gameName,315, 35);
+	ctx.drawImage(gameName,315, 15);
 	ctx.font = "80px Arial";
 	ctx.fillStyle = "rgb(238,238,238)";
 
@@ -473,7 +473,7 @@ function helpScreen()
 }
 function gravity()
 {
-	ctx.clearRect(currentSprite,playerX-1,playerY-1,35,35);
+	ctx.drawImage(sprite1r,playerX,playerY-playerH);
 	//ctx.fillStyle = "rgb(255,0,255)"
 	//ctx.fillRect(playerX,playerY,playerH,playerW);
 	if(playerY + playerH > 600)
@@ -1235,7 +1235,7 @@ function drawMap()
 			}
 			else if(map[i][j] == 1 && map[i][j + 1] == 1 )
 			{
-				ctx.fillRect(x + playerW, y, 25 ,2 );
+				ctx.fillRect(x + playerW, y - 25, 25 ,2 );
 			}
 			else if(map[i][j] == 2)
 			{
