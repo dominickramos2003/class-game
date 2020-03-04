@@ -296,7 +296,6 @@ function controls()
 		jumpTime -=1;
 	}
 }
-
 function runningMan()
 {
 	ctx.drawImage(sprite1r,playerX-1,playerY-1);
@@ -479,13 +478,15 @@ function gravity()
 	//ctx.fillRect(playerX,playerY,playerH,playerW);
 	if(playerY + playerH > 600)
 	{
-		falling = false;
-		playerY = 600 - playerH;
+		deathX = playerX;
+		deathY = playerY;
+		playerX = 30;
+		playerY = 485;
+		ctx.clearRect(deathX-1,deathY-1,35,35);
+		playPop();
+		console.log("die");
 	}
-	else
-	{
-		falling = true;
-	}
+	falling = true;
 	if(falling)
 	{
 		playerY += fallSpeed;
@@ -503,7 +504,6 @@ function gravity()
 		falling = false;
 	}
 }
-
 function Maps()
 {
 map1 = [
@@ -1261,8 +1261,6 @@ function drawMap()
 			{
 				ctx.fillStyle = "rgb(255,255,255)"
 				ctx.fillRect(x + playerW, y, 25 ,25);
-				
-				
 			}
 		}
 	}
@@ -1278,6 +1276,7 @@ function draw()
 {
 	controls();
 	console.log(falling);
+	console.log(playerX + " , "+ playerY) 
 	gravity();
 	playerAnimation();
 	Maps();
