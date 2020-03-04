@@ -474,7 +474,7 @@ function helpScreen()
 }
 function gravity()
 {
-	ctx.clearRect(currentSprite,playerX-1,playerY-1,35,35);
+	ctx.drawImage(sprite1r,playerX,playerY-playerH);
 	//ctx.fillStyle = "rgb(255,0,255)"
 	//ctx.fillRect(playerX,playerY,playerH,playerW);
 	if(playerY + playerH > 600)
