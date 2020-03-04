@@ -59,8 +59,8 @@ var gameName = new Image(); gameName.src = "game name.png";
 
 var playerX = 30;
 var playerY = 485;
-var playerH = 29; 
-var playerW = 29;
+var playerH = 51; 
+var playerW = 40;
 var enimyH = 25;
 var enimyW = 25;
 var fallSpeed = 1;
@@ -1277,6 +1277,7 @@ function musicStart()
 function draw()
 {
 	controls();
+	console.log(falling);
 	gravity();
 	playerAnimation();
 	Maps();
