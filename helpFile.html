@@ -300,7 +300,6 @@ function runningMan()
 {
 	ctx.drawImage(sprite1r,playerX-1,playerY-1);
 	//ctx.fillStyle = "rgb(255,0,255)"
-	//ctx.fillRect(playerX,playerY,playerH,playerW);
 	runTime -= 1;
 	if(runTime >= 1980)
 	{
@@ -473,7 +472,11 @@ function helpScreen()
 }
 function gravity()
 {
+	if(!intro)
+	{
+	ctx.clearRect(playerX,playerY- playerH , playerW,playerH + 5);
 	ctx.drawImage(sprite1r,playerX,playerY-playerH);
+	}
 	//ctx.fillStyle = "rgb(255,0,255)"
 	//ctx.fillRect(playerX,playerY,playerH,playerW);
 	if(playerY + playerH > 600)
