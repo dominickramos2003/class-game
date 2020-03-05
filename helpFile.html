@@ -109,7 +109,7 @@ var jumpSprite5r = new Image(); jumpSprite5r.src = "jump sprite5r.png";
 var pAnimationTimer = 0;
 var pAnimations = [];
 var sprite = 0;
-var currentSprite = 0;
+var currentSprite = sprite1r;
 
 var falling = true;
 var upPressed = false;
@@ -312,7 +312,7 @@ function firstScreen()
 
 function runningMan()
 {
-	ctx.drawImage(sprite1r,playerX-1,playerY-1);
+	ctx.drawImage(currentSprite,playerX-1,playerY-1);
 	//ctx.fillStyle = "rgb(255,0,255)"
 	runTime -= 1;
 	if(runTime >= 1980)
@@ -376,13 +376,13 @@ function playerAnimation()
 	{
 		currentSprite = sprite1;
 	}
-	if(upPressed)
-	{
-		sprite = 3;
-	}
-	if(sprite = 3)
+	if(upPressed && rightPressed)
 	{
 		currentSprite = jumpSprite2r;
+	}
+	if(upPressed && leftPressed)
+	{
+		currentSprite = jumpSprite2;
 	}
 }
 function startScreen()
