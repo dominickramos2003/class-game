@@ -109,6 +109,8 @@ var jumpSprite5r = new Image(); jumpSprite5r.src = "jump sprite5r.png";
 var pAnimationTimer = 0;
 var pAnimations = [];
 var sprite = 0;
+var myDirection = 1;
+var inAir = false;
 var currentSprite = sprite1r;
 
 var falling = true;
@@ -305,8 +307,9 @@ function firstScreen()
 	ctx.fillText("Press Anywhere To Start", 70, 275);
 	if(mouseIsDown)
 	{
-		intro = false;
 		start = true;
+		level1 = false;
+		intro = false;
 	}
 }
 
@@ -370,18 +373,48 @@ function playerAnimation()
 {
 	if(rightPressed)
 	{
+		//walking right
 		currentSprite = sprite1r;
+		myDirection = 1;
 	}
 	if(leftPressed)
 	{
+		// walking left
 		currentSprite = sprite1;
+		myDirection = 2;
 	}
 	if(upPressed && rightPressed)
 	{
+		//jumping right
+		inAir = true;
 		currentSprite = jumpSprite2r;
+		if(collisionDetected)
+		{
+			inAir = false;
+			currentSprite = sprite1r;
+			myDirection = 1;
+		}
 	}
 	if(upPressed && leftPressed)
 	{
+		//jumping left
+		inAir = true;
+		currentSprite = jumpSprite2;
+		if(collisionDetected)
+		{
+			inAir = false;
+			currentSprite = sprite1;
+			myDirection = 2;
+		}
+	}
+	else if((upPressed || falling) && myDirection == 1 && falling)
+	{
+		// jump facing right
+		currentSprite = jumpSprite2r;
+	}
+	else if((upPressed || falling) && myDirection == 2 && falling)
+	{
+		//jump facing left
 		currentSprite = jumpSprite2;
 	}
 }
@@ -517,6 +550,7 @@ function gravity()
 	if(collisionDetected)
 	{
 		falling = false;
+		inAir = false;
 	}
 }
 function Maps()
@@ -1210,18 +1244,21 @@ function drawMap()
 			var eX3 = j * 25;
 			if(upPressed)
 			{
+				inAir = true;
 				if(playerX >= x && playerX <= x + 23 &&
 				playerY >= y && playerY <= y + 2)
 				{
 					if(map[i][j] == 1)
 					{
 						collisionDetected = true;
+						inAir = false;
 						falling = false;
 						playerY += 1;
 					}
 					else
 					{
 						collisionDetected = false;
+						inAir = true;
 					}
 				}
 			}
@@ -1231,6 +1268,7 @@ function drawMap()
 				if(map[i + 1][j] == 1)
 				{
 					collisionDetected = true;
+					inAir = false;
 					falling = false;
 					playerY -= 1;
 					jumpTime = jumpHight; 
@@ -1238,6 +1276,7 @@ function drawMap()
 				else
 				{
 					collisionDetected = false;
+					inAir = true;
 				}
 			}
 			ctx.fillStyle = "rgb(0,0,255)"
