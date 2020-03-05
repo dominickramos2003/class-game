@@ -388,31 +388,19 @@ function playerAnimation()
 		//jumping right
 		inAir = true;
 		currentSprite = jumpSprite2r;
-		if(collisionDetected)
-		{
-			inAir = false;
-			currentSprite = sprite1r;
-			myDirection = 1;
-		}
 	}
 	if(upPressed && leftPressed)
 	{
 		//jumping left
 		inAir = true;
 		currentSprite = jumpSprite2;
-		if(collisionDetected)
-		{
-			inAir = false;
-			currentSprite = sprite1;
-			myDirection = 2;
-		}
 	}
-	else if((upPressed || falling) && myDirection == 1 && falling)
+	if((upPressed || falling) && myDirection == 1 && falling)
 	{
 		// jump facing right
 		currentSprite = jumpSprite2r;
 	}
-	else if((upPressed || falling) && myDirection == 2 && falling)
+	if((upPressed || falling) && myDirection == 2 && falling)
 	{
 		//jump facing left
 		currentSprite = jumpSprite2;
