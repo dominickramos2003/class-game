@@ -368,29 +368,21 @@ function runningMan()
 }
 function playerAnimation()
 {
-	if(rightPressed == true)
+	if(rightPressed)
 	{
-		sprite = 1;
+		currentSprite = sprite1r;
 	}
-	if(leftPressed == true)
+	if(leftPressed)
 	{
-		sprite = 2;
+		currentSprite = sprite1;
 	}
-	if(upPressed == true)
+	if(upPressed)
 	{
 		sprite = 3;
 	}
 	if(sprite = 3)
 	{
 		currentSprite = jumpSprite2r;
-	}
-	if(sprite = 2)
-	{
-		currentSprite = sprite1;
-	}
-	if(sprite = 1)
-	{
-		currentSprite = sprite1r;
 	}
 }
 function startScreen()
@@ -491,7 +483,7 @@ function gravity()
 	{
 	ctx.clearRect(playerX,playerY- playerH , playerW,playerH + 5);
 
-	ctx.drawImage(sprite1r,playerX,playerY-playerH);
+	ctx.drawImage(currentSprite,playerX,playerY-playerH);
 	}
 	//ctx.fillStyle = "rgb(255,0,255)"
 	//ctx.fillRect(playerX,playerY,playerH,playerW);
@@ -755,9 +747,9 @@ map7 = [
 }
 function drawEnemies()
 {
-	ctx.clearRect(x2-1,y2-1,30,30);
+	ctx.clearRect(x2-1,y2-26,30,30);
 	ctx.fillStyle = "#7B241C";
-	ctx.fillRect(x2,y2,25,25);
+	ctx.fillRect(x2,y2-25,25,25);
 	if(x3 <= x2 && x2 <= x4 && changeDirection)
 	{
 		changeDirection = true;
@@ -786,7 +778,7 @@ function enemyCollision()
 		deathX = x2;
 		deathY = y2;
 		enemyDied = true;
-		ctx.clearRect(x2-1,y2-1,35,35);
+		ctx.clearRect(x2-1,y2-26,35,35);
 	}
 	if(playerX <= x2 + enimyW && playerX + playerW >=  x2  && playerY <= y2 + enimyH && playerY + playerH - 10 >=  y2 )
 	{
@@ -1294,8 +1286,8 @@ function musicStart()
 function draw()
 {
 	controls();
-	console.log(falling);
-	console.log(playerX + " , "+ playerY) 
+	//console.log(falling);
+	//console.log(playerX + " , "+ playerY) 
 	gravity();
 	playerAnimation();
 	Maps();
