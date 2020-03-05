@@ -482,12 +482,12 @@ function gravity()
 	if(!intro)
 	{
 	ctx.clearRect(playerX,playerY- playerH , playerW,playerH + 5);
-<<<<<<< HEAD
+
 	ctx.drawImage(sprite1r,playerX,playerY-playerH);
-=======
+
 
 	ctx.drawImage(currentSprite,playerX,playerY-playerH);
->>>>>>> 038dd8ef0dfcabcb29ab7625dd1562fbec4319e2
+
 	}
 	//ctx.fillStyle = "rgb(255,0,255)"
 	//ctx.fillRect(playerX,playerY,playerH,playerW);
@@ -779,13 +779,9 @@ function enemyCollision()
 {
 	if (playerX <= x2 + enimyW && playerX + playerW >=  x2 && playerY + playerH == y2)
 	{
-		
 		enemyDied = true;
-<<<<<<< HEAD
 		ctx.clearRect(0,0,800,600);
-=======
-		ctx.clearRect(x2-1,y2-26,35,35);
->>>>>>> 038dd8ef0dfcabcb29ab7625dd1562fbec4319e2
+		<!-- ctx.clearRect(x2-1,y2-26,35,35); -->
 	}
 	if(playerX <= x2 + enimyW && playerX + playerW >=  x2  && playerY <= y2 + enimyH && playerY + playerH - 10 >=  y2 )
 	{
@@ -793,6 +789,7 @@ function enemyCollision()
 		playerY = 485;
 		playPop();
 		console.log("die");
+		ctx.clearRect(0,0,800,600);
 	}
 }
 
