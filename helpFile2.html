@@ -11,33 +11,136 @@
 <script type="text/javascript">
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
+document.addEventListener("mousemove", mouseMoveHandler, false);
+canvas.addEventListener("mousedown", getPosition, false);
+canvas.addEventListener("mouseup", getPosition2, false);
 var map = [
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,9,0,0,0,0,0,0,0,0,0,0,0,10,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0,0,6,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,11,0,0,0,0,0,0,0,0,0,0,0,0,12,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+[0,0,0,0,0,0,0,1,1,0,0,0,0,1,1,1,1,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0],
+[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0]
 ];
+var map1 = [];
+var map2 = [];
+var map3 = [];
+var map4 = [];
+var map5 = [];
+var map6 = [];
+var map7 = [];
+var map8 = [];
+var map9 = [];
+var map10 = [];
+
+var help1 = new Image(); help1.src = "icons8-help-50 (1).png";
+var help2 = new Image(); help2.src = "icons8-help-50.png";
+var helpSc = new Image(); helpSc.src = "helpScreen.png";
+var settingsArrow = new Image(); settingsArrow.src = "arrow.png";
+var speaker1 = new Image(); speaker1.src = "speaker1.png";
+var speaker2 = new Image(); speaker2.src = "speaker2.png";
+var gameName = new Image(); gameName.src = "game name.png";
 
 var playerX = 30;
 var playerY = 485;
-var playerH = 29; 
-var playerW = 29;
+var playerH = 51; 
+var playerW = 40;
+var enimyH = 25;
+var enimyW = 25;
+var fallSpeed = 1;
+var speed = 1;
+var jumpHight = 100;
+var jumpTime = 100;
+var pX = 400;
+var pY = 300;
+var enemies = [];
+var x2 = 210;
+var y2 = 352;
+var deathX = 0;
+var deathY = 0;
+var runTime = 2000;
+var countSpace = 1;
+var x3 = 220;
+var x4 = 210;
+var enemyDied = false;
+var click = 0;
+var mute = false;
+var intro = true;
+var enimyRight = 200;
+var enLockX = 200;
+var uplet = "up";
+var downlet = "dn";
+var leftlet = "Lt";
+var rightlet = "rt";
+//sprites
+var sprite1 = new Image(); sprite1.src = "sprite1.png";
+var sprite2 = new Image(); sprite2.src = "sprite2.png";
+var sprite3 = new Image(); sprite3.src = "sprite3.png";
+var sprite4 = new Image(); sprite4.src = "sprite4.png";
+var sprite5 = new Image(); sprite5.src = "sprite5.png";
+var sprite1r = new Image(); sprite1r.src = "sprite1r.png";
+var sprite2r = new Image(); sprite2r.src = "sprite2r.png";
+var sprite3r = new Image(); sprite3r.src = "sprite3r.png";
+var sprite4r = new Image(); sprite4r.src = "sprite4r.png";
+var sprite5r = new Image(); sprite5r.src = "sprite5r.png";
+var jumpSprite1 = new Image(); jumpSprite1.src = "jump sprite1.png";
+var jumpSprite2 = new Image(); jumpSprite2.src = "jump sprite2.png";
+var jumpSprite3 = new Image(); jumpSprite3.src = "jump sprite3.png";
+var jumpSprite4 = new Image(); jumpSprite4.src = "jump sprite4.png";
+var jumpSprite5 = new Image(); jumpSprite5.src = "jump sprite5.png";
+var jumpSprite1r = new Image(); jumpSprite1r.src = "jump sprite1r.png";
+var jumpSprite2r = new Image(); jumpSprite2r.src = "jump sprite2r.png";
+var jumpSprite3r = new Image(); jumpSprite3r.src = "jump sprite3r.png";
+var jumpSprite4r = new Image(); jumpSprite4r.src = "jump sprite4r.png";
+var jumpSprite5r = new Image(); jumpSprite5r.src = "jump sprite5r.png";
+var pAnimationTimer = 0;
+var pAnimations = [];
+var sprite = 0;
+var myDirection = 1;
+var inAir = false;
+var currentSprite = sprite1r;
+
+var falling = true;
+var upPressed = false;
+var downPressed = false;
+var leftPressed = false;
+var rightPressed = false;
+var spacePressed = false;
+var collisionDetected = false;
+var start = false;
+var help = false;
+var mouseIsDown = false;
+var sound = true;
+var placeEnimy = true;
+var changeDirection = true;
+var level1 = false;
+var level2 = false;
+var level3 = false;
+var level4 = false;
+var level5 = false;
+var level6 = false;
+var level7 = false;
+var level8 = false;
+var level9 = false;
+var level10 = false;
+
+
 
 var placeEnimyz = true;
 var collisionDetectedz = false;
@@ -85,6 +188,742 @@ var deathY = 0;
 var x3j = 220;
 var x4j = 210;
 var enemyDiedj = false;
+var upNum = 38;
+var downNum = 40;
+var leftNum = 37;
+var rightNum = 39;
+var upMode = false;
+var downMode = false;
+var leftMode = false;
+var rightMode = false;
+
+//music
+var playSong = 0;
+var song1 = new Audio();
+song1.src = "organisms.wav";
+var song2 = new Audio();
+song2.src = "negentropy.wav";
+var song3 = new Audio();
+song3.src = "moonrise.wav";
+var song4 = new Audio();
+song4.src = "illustrated novel.wav";
+var song5 = new Audio();
+song5.src = "elipsis.wav";
+var song6 = new Audio();
+song6.src = "shipping lanes.wav";
+var song7 = new Audio();
+song7.src = "algorithms.wav";
+
+function getPosition(event){
+	mouseIsDown = true;
+}
+function getPosition2(event){
+	mouseIsDown = false;	
+}
+function playPop(){
+	var pop = new Audio();
+	pop.src = "pop.wav";
+	pop.play();
+}
+function playSong1(){
+	song1.play();
+}
+function playSong2(){
+	song2.play();
+}
+function playSong3(){
+	song3.play();
+}
+function playSong4(){
+	song4.play();
+}
+function playSong5(){
+	song5.play();
+}
+function playSong6(){
+	song6.play();
+}
+function playSong7(){
+	song7.play();
+}
+function mouseMoveHandler(e){
+    pX = e.clientX - canvas.offsetLeft;
+    pY = e.clientY - canvas.offsetTop;
+}
+
+function keyDownHandler(e){
+	if(upMode){
+		if(e.keyCode==8){uplet="back";upNum=e.keyCode;upMode=false;}if(e.keyCode==9){uplet="tab";upNum=e.keyCode;upMode=false;}if(e.keyCode==13){uplet="ent";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==16){uplet="shift";upNum=e.keyCode;upMode=false;}if(e.keyCode==17){uplet="ctrl";upNum=e.keyCode;upMode=false;}if(e.keyCode==18){uplet="alt";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==19){uplet="pause";upNum=e.keyCode;upMode=false;}if(e.keyCode==20){uplet="cLoc";upNum=e.keyCode;upMode=false;}if(e.keyCode==27){uplet="esc";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==33){uplet="pgup";upNum=e.keyCode;upMode=false;}if(e.keyCode==32){uplet="spc";upNum=e.keyCode;upMode=false;}if(e.keyCode==34){uplet="pgdn";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==35){uplet="end";upNum=e.keyCode;upMode=false;}if(e.keyCode==36){uplet="home";upNum=e.keyCode;upMode=false;}if(e.keyCode==37){uplet="left";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==38){uplet="up";upNum=e.keyCode;upMode=false;}if(e.keyCode==39){uplet="rght";upNum=e.keyCode;upMode=false;}if(e.keyCode==40){uplet="down";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==44){uplet="ptsc";upNum=e.keyCode;upMode=false;}if(e.keyCode==45){uplet="inst";upNum=e.keyCode;upMode=false;}if(e.keyCode==46){uplet="delete";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==48){uplet="0";upNum=e.keyCode;upMode=false;}if(e.keyCode==49){uplet="1";upNum=e.keyCode;upMode=false;}if(e.keyCode==50){uplet="2";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==51){uplet="3";upNum=e.keyCode;upMode=false;}if(e.keyCode==52){uplet="4";upNum=e.keyCode;upMode=false;}if(e.keyCode==53){uplet="5";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==54){uplet="6";upNum=e.keyCode;upMode=false;}if(e.keyCode==55){uplet="7";upNum=e.keyCode;upMode=false;}if(e.keyCode==56){uplet="8";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==57){uplet="9";upNum=e.keyCode;upMode=false;}if(e.keyCode==65){uplet="A";upNum=e.keyCode;upMode=false;}if(e.keyCode==66){uplet="B";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==67){uplet="C";upNum=e.keyCode;upMode=false;}if(e.keyCode==68){uplet="D";upNum=e.keyCode;upMode=false;}if(e.keyCode==69){uplet="E";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==70){uplet="F";upNum=e.keyCode;upMode=false;}if(e.keyCode==71){uplet="G";upNum=e.keyCode;upMode=false;}if(e.keyCode==72){uplet="H";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==73){uplet="I";upNum=e.keyCode;upMode=false;}if(e.keyCode==74){uplet="J";upNum=e.keyCode;upMode=false;}if(e.keyCode==75){uplet="K";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==76){uplet="L";upNum=e.keyCode;upMode=false;}if(e.keyCode==77){uplet="M";upNum=e.keyCode;upMode=false;}if(e.keyCode==78){uplet="N";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==79){uplet="O";upNum=e.keyCode;upMode=false;}if(e.keyCode==80){uplet="P";upNum=e.keyCode;upMode=false;}if(e.keyCode==81){uplet="Q";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==82){uplet="R";upNum=e.keyCode;upMode=false;}if(e.keyCode==83){uplet="S";upNum=e.keyCode;upMode=false;}if(e.keyCode==84){uplet="T";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==85){uplet="U";upNum=e.keyCode;upMode=false;}if(e.keyCode==86){uplet="V";upNum=e.keyCode;upMode=false;}if(e.keyCode==87){uplet="W";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==88){uplet="X";upNum=e.keyCode;upMode=false;}if(e.keyCode==89){uplet="Y";upNum=e.keyCode;upMode=false;}if(e.keyCode==90){uplet="Z";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==96){uplet="N0";upNum=e.keyCode;upMode=false;}if(e.keyCode==97){uplet="N1";upNum=e.keyCode;upMode=false;}if(e.keyCode==98){uplet="N2";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==99){uplet="N3";upNum=e.keyCode;upMode=false;}if(e.keyCode==100){uplet="N4";upNum=e.keyCode;upMode=false;}if(e.keyCode==101){uplet="N5";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==102){uplet="N6";upNum=e.keyCode;upMode=false;}if(e.keyCode==103){uplet="N7";upNum=e.keyCode;upMode=false;}if(e.keyCode==104){uplet="N8";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==105){uplet="N9";upNum=e.keyCode;upMode=false;}if(e.keyCode==107){uplet="+";upNum=e.keyCode;upMode=false;}if(e.keyCode==109){uplet="-";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==110){uplet=".";upNum=e.keyCode;upMode=false;}if(e.keyCode==111){uplet="/";upNum=e.keyCode;upMode=false;}if(e.keyCode==186){uplet=":";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==187){uplet="=";upNum=e.keyCode;upMode=false;}if(e.keyCode==188){uplet=",";upNum=e.keyCode;upMode=false;}if(e.keyCode==189){uplet="-";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==190){uplet=".";upNum=e.keyCode;upMode=false;}if(e.keyCode==191){uplet="/";upNum=e.keyCode;upMode=false;}if(e.keyCode==219){uplet="~";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==220){uplet="\'";upNum=e.keyCode;upMode=false;}if(e.keyCode==221){uplet="]";upNum=e.keyCode;upMode=false;}if(e.keyCode==222){uplet="'";upNum=e.keyCode;upMode=false;}
+	}
+	if(upMode){
+		if(e.keyCode==8){downlet="back";downNum=e.keyCode;downMode=false;}if(e.keyCode==9){downlet="tab";downNum=e.keyCode;downMode=false;}if(e.keyCode==13){downlet="ent";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==16){downlet="shift";downNum=e.keyCode;downMode=false;}if(e.keyCode==17){downlet="ctrl";downNum=e.keyCode;downMode=false;}if(e.keyCode==18){downlet="alt";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==19){downlet="pause";downNum=e.keyCode;downMode=false;}if(e.keyCode==20){downlet="cLoc";downNum=e.keyCode;downMode=false;}if(e.keyCode==27){downlet="esc";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==33){downlet="pgup";downNum=e.keyCode;downMode=false;}if(e.keyCode==32){downlet="spc";downNum=e.keyCode;downMode=false;}if(e.keyCode==34){downlet="pgdn";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==35){downlet="end";downNum=e.keyCode;downMode=false;}if(e.keyCode==36){downlet="home";downNum=e.keyCode;downMode=false;}if(e.keyCode==37){downlet="left";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==38){downlet="up";downNum=e.keyCode;downMode=false;}if(e.keyCode==39){downlet="rght";downNum=e.keyCode;downMode=false;}if(e.keyCode==40){downlet="down";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==44){downlet="ptsc";downNum=e.keyCode;downMode=false;}if(e.keyCode==45){downlet="inst";downNum=e.keyCode;downMode=false;}if(e.keyCode==46){downlet="delete";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==48){downlet="0";downNum=e.keyCode;downMode=false;}if(e.keyCode==49){downlet="1";downNum=e.keyCode;downMode=false;}if(e.keyCode==50){downlet="2";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==51){downlet="3";downNum=e.keyCode;downMode=false;}if(e.keyCode==52){downlet="4";downNum=e.keyCode;downMode=false;}if(e.keyCode==53){downlet="5";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==54){downlet="6";downNum=e.keyCode;downMode=false;}if(e.keyCode==55){downlet="7";downNum=e.keyCode;downMode=false;}if(e.keyCode==56){downlet="8";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==57){downlet="9";downNum=e.keyCode;downMode=false;}if(e.keyCode==65){downlet="A";downNum=e.keyCode;downMode=false;}if(e.keyCode==66){downlet="B";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==67){downlet="C";downNum=e.keyCode;downMode=false;}if(e.keyCode==68){downlet="D";downNum=e.keyCode;downMode=false;}if(e.keyCode==69){downlet="E";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==70){downlet="F";downNum=e.keyCode;downMode=false;}if(e.keyCode==71){downlet="G";downNum=e.keyCode;downMode=false;}if(e.keyCode==72){downlet="H";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==73){downlet="I";downNum=e.keyCode;downMode=false;}if(e.keyCode==74){downlet="J";downNum=e.keyCode;downMode=false;}if(e.keyCode==75){downlet="K";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==76){downlet="L";downNum=e.keyCode;downMode=false;}if(e.keyCode==77){downlet="M";downNum=e.keyCode;downMode=false;}if(e.keyCode==78){downlet="N";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==79){downlet="O";downNum=e.keyCode;downMode=false;}if(e.keyCode==80){downlet="P";downNum=e.keyCode;downMode=false;}if(e.keyCode==81){downlet="Q";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==82){downlet="R";downNum=e.keyCode;downMode=false;}if(e.keyCode==83){downlet="S";downNum=e.keyCode;downMode=false;}if(e.keyCode==84){downlet="T";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==85){downlet="U";downNum=e.keyCode;downMode=false;}if(e.keyCode==86){downlet="V";downNum=e.keyCode;downMode=false;}if(e.keyCode==87){downlet="W";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==88){downlet="X";downNum=e.keyCode;downMode=false;}if(e.keyCode==89){downlet="Y";downNum=e.keyCode;downMode=false;}if(e.keyCode==90){downlet="Z";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==96){downlet="N0";downNum=e.keyCode;downMode=false;}if(e.keyCode==97){downlet="N1";downNum=e.keyCode;downMode=false;}if(e.keyCode==98){downlet="N2";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==99){downlet="N3";downNum=e.keyCode;downMode=false;}if(e.keyCode==100){downlet="N4";downNum=e.keyCode;downMode=false;}if(e.keyCode==101){downlet="N5";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==102){downlet="N6";downNum=e.keyCode;downMode=false;}if(e.keyCode==103){downlet="N7";downNum=e.keyCode;downMode=false;}if(e.keyCode==104){downlet="N8";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==105){downlet="N9";downNum=e.keyCode;downMode=false;}if(e.keyCode==107){downlet="+";downNum=e.keyCode;downMode=false;}if(e.keyCode==109){downlet="-";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==110){downlet=".";downNum=e.keyCode;downMode=false;}if(e.keyCode==111){downlet="/";downNum=e.keyCode;downMode=false;}if(e.keyCode==186){downlet=":";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==187){downlet="=";downNum=e.keyCode;downMode=false;}if(e.keyCode==188){downlet=",";downNum=e.keyCode;downMode=false;}if(e.keyCode==189){downlet="-";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==190){downlet=".";downNum=e.keyCode;downMode=false;}if(e.keyCode==191){downlet="/";downNum=e.keyCode;downMode=false;}if(e.keyCode==219){downlet="~";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==220){downlet="\'";downNum=e.keyCode;downMode=false;}if(e.keyCode==221){downlet="]";downNum=e.keyCode;downMode=false;}if(e.keyCode==222){downlet="'";downNum=e.keyCode;downMode=false;}
+	}
+	if(upMode){	
+		if(e.keyCode==8){leftlet="back";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==9){leftlet="tab";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==13){leftlet="ent";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==16){leftlet="shift";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==17){leftlet="ctrl";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==18){leftlet="alt";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==19){leftlet="pause";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==20){leftlet="cLoc";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==27){leftlet="esc";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==33){leftlet="pgup";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==32){leftlet="spc";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==34){leftlet="pgdn";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==35){leftlet="end";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==36){leftlet="home";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==37){leftlet="left";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==38){leftlet="up";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==39){leftlet="rght";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==40){leftlet="down";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==44){leftlet="ptsc";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==45){leftlet="inst";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==46){leftlet="delete";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==48){leftlet="0";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==49){leftlet="1";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==50){leftlet="2";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==51){leftlet="3";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==52){leftlet="4";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==53){leftlet="5";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==54){leftlet="6";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==55){leftlet="7";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==56){leftlet="8";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==57){leftlet="9";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==65){leftlet="A";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==66){leftlet="B";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==67){leftlet="C";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==68){leftlet="D";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==69){leftlet="E";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==70){leftlet="F";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==71){leftlet="G";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==72){leftlet="H";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==73){leftlet="I";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==74){leftlet="J";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==75){leftlet="K";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==76){leftlet="L";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==77){leftlet="M";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==78){leftlet="N";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==79){leftlet="O";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==80){leftlet="P";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==81){leftlet="Q";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==82){leftlet="R";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==83){leftlet="S";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==84){leftlet="T";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==85){leftlet="U";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==86){leftlet="V";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==87){leftlet="W";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==88){leftlet="X";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==89){leftlet="Y";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==90){leftlet="Z";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==96){leftlet="N0";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==97){leftlet="N1";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==98){leftlet="N2";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==99){leftlet="N3";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==100){leftlet="N4";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==101){leftlet="N5";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==102){leftlet="N6";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==103){leftlet="N7";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==104){leftlet="N8";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==105){leftlet="N9";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==107){leftlet="+";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==109){leftlet="-";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==110){leftlet=".";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==111){leftlet="/";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==186){leftlet=":";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==187){leftlet="=";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==188){leftlet=",";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==189){leftlet="-";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==190){leftlet=".";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==191){leftlet="/";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==219){leftlet="~";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==220){leftlet="\'";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==221){leftlet="]";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==222){leftlet="'";leftNum=e.keyCode;leftMode=false;}
+	}
+	if(upMode){	
+		if(e.keyCode==8){rightlet="back";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==9){rightlet="tab";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==13){rightlet="ent";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==16){rightlet="shift";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==17){rightlet="ctrl";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==18){rightlet="alt";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==19){rightlet="pause";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==20){rightlet="cLoc";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==27){rightlet="esc";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==33){rightlet="pgup";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==32){rightlet="spc";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==34){rightlet="pgdn";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==35){rightlet="end";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==36){rightlet="home";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==37){rightlet="left";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==38){rightlet="up";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==39){rightlet="rght";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==40){rightlet="down";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==44){rightlet="ptsc";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==45){rightlet="inst";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==46){rightlet="delete";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==48){rightlet="0";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==49){rightlet="1";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==50){rightlet="2";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==51){rightlet="3";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==52){rightlet="4";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==53){rightlet="5";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==54){rightlet="6";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==55){rightlet="7";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==56){rightlet="8";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==57){rightlet="9";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==65){rightlet="A";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==66){rightlet="B";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==67){rightlet="C";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==68){rightlet="D";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==69){rightlet="E";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==70){rightlet="F";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==71){rightlet="G";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==72){rightlet="H";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==73){rightlet="I";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==74){rightlet="J";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==75){rightlet="K";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==76){rightlet="L";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==77){rightlet="M";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==78){rightlet="N";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==79){rightlet="O";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==80){rightlet="P";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==81){rightlet="Q";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==82){rightlet="R";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==83){rightlet="S";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==84){rightlet="T";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==85){rightlet="U";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==86){rightlet="V";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==87){rightlet="W";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==88){rightlet="X";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==89){rightlet="Y";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==90){rightlet="Z";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==96){rightlet="N0";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==97){rightlet="N1";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==98){rightlet="N2";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==99){rightlet="N3";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==100){rightlet="N4";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==101){rightlet="N5";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==102){rightlet="N6";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==103){rightlet="N7";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==104){rightlet="N8";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==105){rightlet="N9";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==107){rightlet="+";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==109){rightlet="-";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==110){rightlet=".";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==111){rightlet="/";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==186){rightlet=":";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==187){rightlet="=";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==188){rightlet=",";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==189){rightlet="-";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==190){rightlet=".";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==191){rightlet="/";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==219){rightlet="~";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==220){rightlet="\'";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==221){rightlet="]";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==222){rightlet="'";rightNum=e.keyCode;rightMode=false;}
+	}
+	if(e.keyCode == upNum){upPressed = true;}
+	if(e.keyCode == downNum){downPressed = true;}
+	if(e.keyCode == leftNum){leftPressed = true;}
+	if(e.keyCode == rightNum){rightPressed = true;}
+	if(e.keyCode == 32)
+	{
+		spacePressed = true;
+	}
+}
+function keyUpHandler(e){
+	if(e.keyCode == upNum){upPressed = false;}
+	if(e.keyCode == downNum){downPressed = false;}
+	if(e.keyCode == leftNum){leftPressed = false;}
+	if(e.keyCode == rightNum){rightPressed = false;}
+	if(e.keyCode == 32)
+	{
+		spacePressed = false;
+	}
+}
+
+function controls()
+{
+	if(rightPressed)
+	{
+		playerX +=speed;
+	}
+	if(leftPressed)
+	{
+		playerX -=speed;
+	}
+	if(upPressed && jumpTime >=0)
+	{
+		playerY -=2
+		jumpTime -=1;
+	}
+}
+
+function firstScreen()
+{
+	ctx.fillStyle = "rgb(42.7, 42.7, 42.7)";
+	ctx.font = "60px Arial";
+	ctx.fillText("Press Anywhere To Start", 70, 275);
+	if(mouseIsDown)
+	{
+		start = true;
+		level1 = false;
+		intro = false;
+	}
+}
+
+function runningMan()
+{
+	ctx.drawImage(currentSprite,playerX-1,playerY-1);
+	//ctx.fillStyle = "rgb(255,0,255)"
+	runTime -= 1;
+	if(runTime >= 1980)
+	{
+		rightPressed = true; 
+	}
+	else if(runTime >= 1900)
+	{
+		
+		upPressed = true;
+	}
+	else if(runTime >= 1850)
+	{
+		
+		rightPressed = false;
+		upPressed = false;
+	}
+	else if(runTime >= 1840)
+	{
+		upPressed = true;
+	}
+	else if(runTime >= 1775)
+	{
+		
+		rightPressed = true;
+		
+	}
+	else if(runTime >= 1700)
+	{
+		
+		rightPressed = false;
+		upPressed = false;
+	}
+	else if(runTime >= 1640)
+	{
+		rightPressed = true;
+		upPressed = true;
+	}
+	else 
+	{
+		rightPressed = true;
+		upPressed = false;
+	}
+	if(runTime <= 1170)
+	{
+		runTime = 2000;
+		playerX = 30;
+		playerY = 485;
+		
+	}
+	//console.log(runTime);
+	
+}
+function playerAnimation()
+{
+	if(rightPressed)
+	{
+		//walking right
+		currentSprite = sprite1r;
+		myDirection = 1;
+	}
+	if(leftPressed)
+	{
+		// walking left
+		currentSprite = sprite1;
+		myDirection = 2;
+	}
+	if(upPressed && rightPressed)
+	{
+		//jumping right
+		inAir = true;
+		currentSprite = jumpSprite2r;
+	}
+	if(upPressed && leftPressed)
+	{
+		//jumping left
+		inAir = true;
+		currentSprite = jumpSprite2;
+	}
+	if((upPressed || falling) && myDirection == 1 && falling)
+	{
+		// jump facing right
+		currentSprite = jumpSprite2r;
+	}
+	if((upPressed || falling) && myDirection == 2 && falling)
+	{
+		//jump facing left
+		currentSprite = jumpSprite2;
+	}
+	if(!upPressed && !rightPressed && !leftPressed && !falling)
+	{
+		if(myDirection == 1)
+		{
+			currentSprite = sprite1r;
+		}
+		if(myDirection == 2)
+		{
+			currentSprite = sprite1;
+		}
+	}
+}
+function startScreen()
+{
+	ctx.drawImage(gameName,315, 15);
+	ctx.font = "80px Arial";
+	ctx.fillStyle = "rgb(238,238,238)";
+
+	//mute music stuff
+	ctx.drawImage(speaker1, 2, 550);
+	if(pX >= 2 && pX <= 52 && pY >= 550 && pY <= 600 && mouseIsDown)
+		{
+			if(mute == false)
+			{
+				mute = true;
+			}
+		}
+	if(mute)
+	{
+		ctx.drawImage(speaker2, 2, 550);
+	}	
+	else
+	{
+		ctx.drawImage(speaker1, 2, 550);
+	}
+	ctx.fillStyle = "rgb(200,200,200)";
+	if(pX >= 750 && pX <= 800 && pY >= 550 && pY <= 600 )
+	{
+		ctx.fillStyle = "rgb(238,238,238)";
+		ctx.font = "50px Arial";
+		ctx.drawImage(help1,750,550);
+		if(mouseIsDown)
+		{
+			help = true;
+		}
+	}
+	else
+	{
+		ctx.fillStyle = "rgb(0,0,0)"
+		ctx.font = "50px Arial";
+		ctx.drawImage(help2,750, 550);
+	}
+	if(pX >= 330 && pX <= 460 && pY >= 174&& pY <= 394)
+	{
+		ctx.fillStyle = "rgb(42.7, 42.7, 42.7)";
+		ctx.font = "80px Arial";
+		ctx.fillText("Play", 330, 374);
+		if((mouseIsDown && sound) == true)
+		{
+			sound = false;
+			start = false;
+			ctx.clearRect(0,0,800,600);
+			playerX = 30;
+			playerY = 420;
+			rightPressed = false;
+			level1 = true;
+		}
+	}
+	else
+	{
+		ctx.fillStyle = "rgb(0,0,0)";
+		ctx.font = "80px Arial";
+		ctx.fillText("Play", 330, 374);
+	}
+	drawMap();
+	runningMan();
+}
+function helpScreen()
+{	
+	ctx.drawImage(helpSc, 0, 0);
+	ctx.drawImage(settingsArrow, 15, 500);
+	if(pX >= 15 && pX <= 95 && pY >= 500 && pY <= 580 && mouseIsDown)
+	{
+		ctx.clearRect(0,0,800,600);
+		startScreen();
+		help = false;
+	}
+	ctx.font = " 50px Arial";
+	ctx.fillText(uplet,330,190);
+	ctx.fillText(downlet,330,270);
+	ctx.fillText(leftlet,260,270);
+	ctx.fillText(rightlet,410,270);
+	if(pX >= 330 && pX <= 430 && pY >= 190 && pY <= 580 && mouseIsDown)
+	{
+		
+	}
+}
+function gravity()
+{
+
+	if(!intro)
+	{
+	ctx.clearRect(playerX,playerY- playerH , playerW,playerH + 5);
+
+	ctx.drawImage(sprite1r,playerX,playerY-playerH);
+
+
+	ctx.drawImage(currentSprite,playerX,playerY-playerH);
+
+	}
+	//ctx.fillStyle = "rgb(255,0,255)"
+	//ctx.fillRect(playerX,playerY,playerH,playerW);
+	if(playerY + playerH > 600)
+	{
+		deathX = playerX;
+		deathY = playerY;
+		playerX = 30;
+		playerY = 485;
+		ctx.clearRect(deathX-1,deathY-1,35,35);
+		playPop();
+		console.log("die");
+	}
+	falling = true;
+	if(falling)
+	{
+		playerY += fallSpeed;
+	}
+	if( playerX <= 0)
+	{
+		leftPressed= false;
+	}
+	if(playerX + playerW >= 800)
+	{
+		rightPressed= false;
+	}
+	if(collisionDetected)
+	{
+		falling = false;
+		inAir = false;
+	}
+}
+function Maps()
+{
+map1 = [
+[0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+];
+ map2 = [
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,4,4,0,0,0,0,0,1,1,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0]
+];
+
+map3 = [
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+];
+map4 = [
+[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0,0,1,1,1,1,1,1,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0],
+[1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0]
+];
+
+ map5 = [
+[0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0],
+[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0]
+];
+
+ map6 = [
+[0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0]
+];
+
+map7 = [
+[0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0],
+[0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0],
+[0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[1,1,1,1,1,1,1,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0]
+];
+
+ map8 = [
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+];
+
+ map9 = [
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+];
+
+ map10 = [
+[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+[1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1],
+[1,0,1,0,1,1,0,1,1,0,0,1,0,1,1,0,1,0,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1],
+[1,0,1,0,0,1,0,1,0,1,0,1,0,1,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,1],
+[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+[0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+[1,0,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,0,1,1],
+[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1],
+[1,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,1,1],
+[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1],
+[1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+];
+}
+function drawEnemies()
+{
+	ctx.clearRect(x2-1,y2-26,30,30);
+	ctx.fillStyle = "#7B241C";
+	ctx.fillRect(x2,y2-25,25,25);
+	if(x3 <= x2 && x2 <= x4 && changeDirection)
+	{
+		changeDirection = true;
+	}
+	if(x4 < x2)
+	{
+		changeDirection = false;
+	}
+	if(x3 > x2)
+	{
+		changeDirection = true;
+	}
+	if(changeDirection)
+	{
+		x2 +=1;
+	}
+	else
+	{
+		x2 -=1;
+	}
+}
+function enemyCollision()
+{
+	if (playerX <= x2 + enimyW && playerX + playerW >=  x2 && playerY + playerH == y2)
+	{
+		enemyDied = true;
+		ctx.clearRect(0,0,800,600);
+		<!-- ctx.clearRect(x2-1,y2-26,35,35); -->
+	}
+	if(playerX <= x2 + enimyW && playerX + playerW >=  x2  && playerY <= y2 + enimyH && playerY + playerH - 10 >=  y2 )
+	{
+		playerX = 30;
+		playerY = 485;
+		playPop();
+		console.log("die");
+		ctx.clearRect(0,0,800,600);
+	}
+}
 
 function enimys56()
 {
@@ -382,13 +1221,209 @@ function enimys1112()
 		console.log("die");
 	}
 }
+function drawMap()
+{
+	if(spacePressed)
+	{
+		if(level10)
+		{
+		ctx.fillRect(0,0,200,300)
+		}
+		if(level9)
+		{
+			level9 = false;
+			level10 = true;
+		}
+		if(level8)
+		{
+			level8 = false;
+			level9 = true;
+		}
+		if(level7)
+		{
+			level7 = false;
+			level8 = true;
+		}
+		if(level6)
+		{
+			level6 = false;
+			level7 = true;
+		}
+		if(level5)
+		{
+			level5 = false;
+			level6 = true;
+		}
+		if(level4)
+		{
+			level4 = false;
+			level5 = true;
+		}
+		if(level4)
+		{
+			level4 = false;
+			level5 = true;
+		}
+		if(level4)
+		{
+			level4 = false;
+			level5 = true;
+		}
+		if(level3)
+		{
+			level3 = false;
+			level4 = true;
+		}
+		if(level2)
+		{
+			level2 = false;
+			level3 = true;
+		}
+		if(level1)
+		{
+			level1 = false;
+			level2 = true;
+		}
+		spacePressed = false;
+		placeEnimy = true;
+		enemyDied = false;
+		ctx.clearRect(0,0,800,600);
+	}
+	Maps();
+	if(level1)
+	{  
+		map = map1;
+	}
+	if(level2)
+	{
+		map = map2;
+	}
+	if(level3)
+	{
+		map = map3;
+	}
+	if(level4)
+	{
+		map = map4;
+	}
+	if(level5)
+	{
+		map = map5;
+	}
+	if(level6)
+	{
+		map = map6;
+	}
+	if(level7)
+	{
+		map = map7;
+	}
+	if(level8)
+	{
+		map = map8;
+	}
+	if(level9)
+	{
+		map = map9;
+	}
+	if(level10)
+	{
+		map = map10;
+	}
+	for(var i = 0; i < map.length; i++)
+	{
+		for(var j = 0; j < map[i].length; j++)
+		{
+			var x = j * 25;
+			var y = (i*25) + 50;
+			var eX = j * 25;
+			var eY = (i*25) + 50;
+			var eX2 = j * 25;
+			var eX3 = j * 25;
+			if(upPressed)
+			{
+				inAir = true;
+				if(playerX >= x && playerX <= x + 23 &&
+				playerY >= y && playerY <= y + 2)
+				{
+					if(map[i][j] == 1)
+					{
+						collisionDetected = true;
+						inAir = false;
+						falling = false;
+						playerY += 1;
+					}
+					else
+					{
+						collisionDetected = false;
+						inAir = true;
+					}
+				}
+			}
+			if(playerX >= x && playerX <= x + 24 &&
+			playerY >= y && playerY <= y + 24)
+			{
+				if(map[i + 1][j] == 1)
+				{
+					collisionDetected = true;
+					inAir = false;
+					falling = false;
+					playerY -= 1;
+					jumpTime = jumpHight; 
+				}
+				else
+				{
+					collisionDetected = false;
+					inAir = true;
+				}
+			}
+			ctx.fillStyle = "rgb(0,0,255)"
+			if(map[i][j] == 0   )
+			{
+			
+			}
+			else if(map[i][j] == 1 && map[i][j + 1] == 1 )
+			{
+				ctx.fillRect(x + playerW, y - 25, 25 ,2 );
+			}
+			else if(map[i][j] == 2)
+			{
+				x3 = eX;
+				if(placeEnimy)
+				{
+					x2 = eX;
+					y2 = eY;
+					changeDirection = true;
+					placeEnimy = false;
+				}
+			}
+			else if(map[i][j] == 3 )
+			{
+				x4 = eX;
+				if(!enemyDied)
+				{
+					drawEnemies();
+					enemyCollision();
+				}
+			}
+			else if(map[i][j] == 4)
+			{
+				ctx.fillStyle = "rgb(255,255,255)"
+				ctx.fillRect(x + playerW, y, 25 ,25);
+			}
+		}
+	}
+}
+function musicStart()
+{
+	if(playerX >= 0 && mute == false)
+	{
+		playSong2();
+	}
+}
 function draw()
 {
-	ctx.clearRect(0,0,800,600);
-	enimys56()
-	enimys78()
-	enimys910()
-	enimys1112()
+	helpScreen();
 }
 
 setInterval(draw, 2);
