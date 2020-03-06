@@ -479,6 +479,7 @@ function playerAnimation()
 {
 	if(rightPressed && !falling)
 	{
+		//walking right
 		pAnimationTimer++;
 		if(pAnimationTimer % 4 == 0)
 		{
@@ -486,25 +487,40 @@ function playerAnimation()
 		}
 		else if(pAnimationTimer % 4 == 1)
 		{
-			currentImage = sprite2r;
+			currentSprite = sprite2r;
 		}
 		else if(pAnimationTimer % 4 == 2)
 		{
-			currentImage = sprite3r;
+			currentSprite = sprite3r;
 		}
 		else if(pAnimationTimer % 4 == 3)
 		{
-			currentImage = sprite4r;
+			currentSprite = sprite4r;
 			console.log("working");
 		}
-		//walking right
-		//currentSprite = sprite1r;
 		myDirection = 1;
 	}
 	if(leftPressed && !falling)
 	{
 		// walking left
-		currentSprite = sprite1;
+		pAnimationTimer++;
+		if(pAnimationTimer % 4 == 0)
+		{
+			currentSprite = sprite1;
+		}
+		else if(pAnimationTimer % 4 == 1)
+		{
+			currentSprite = sprite2;
+		}
+		else if(pAnimationTimer % 4 == 2)
+		{
+			currentSprite = sprite3;
+		}
+		else if(pAnimationTimer % 4 == 3)
+		{
+			currentSprite = sprite4;
+			console.log("working");
+		}
 		myDirection = 2;
 	}
 	if(upPressed && rightPressed)
