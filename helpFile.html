@@ -110,6 +110,7 @@ var jumpSprite3r = new Image(); jumpSprite3r.src = "jump sprite3r.png";
 var jumpSprite4r = new Image(); jumpSprite4r.src = "jump sprite4r.png";
 var jumpSprite5r = new Image(); jumpSprite5r.src = "jump sprite5r.png";
 var pAnimationTimer = 0;
+var pAnimationTimer2 = 0;
 var pAnimations = [];
 var sprite = 0;
 var myDirection = 1;
@@ -476,13 +477,31 @@ function runningMan()
 }
 function playerAnimation()
 {
-	if(rightPressed)
+	if(rightPressed && !falling)
 	{
+		pAnimationTimer++;
+		if(pAnimationTimer % 4 == 0)
+		{
+			currentSprite = sprite1r;
+		}
+		else if(pAnimationTimer % 4 == 1)
+		{
+			currentImage = sprite2r;
+		}
+		else if(pAnimationTimer % 4 == 2)
+		{
+			currentImage = sprite3r;
+		}
+		else if(pAnimationTimer % 4 == 3)
+		{
+			currentImage = sprite4r;
+			console.log("working");
+		}
 		//walking right
-		currentSprite = sprite1r;
+		//currentSprite = sprite1r;
 		myDirection = 1;
 	}
-	if(leftPressed)
+	if(leftPressed && !falling)
 	{
 		// walking left
 		currentSprite = sprite1;
