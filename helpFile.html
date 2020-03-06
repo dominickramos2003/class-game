@@ -84,7 +84,10 @@ var mute = false;
 var intro = true;
 var enimyRight = 200;
 var enLockX = 200;
-
+var uplet = "up";
+var downlet = "dn";
+var leftlet = "lt";
+var rightlet = "rt";
 //sprites
 var sprite1 = new Image(); sprite1.src = "sprite1.png";
 var sprite2 = new Image(); sprite2.src = "sprite2.png";
@@ -249,149 +252,121 @@ function mouseMoveHandler(e){
 }
 
 function keyDownHandler(e){
-	if(upMode)
-	{
-		if(e.keyCode == 8){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 9){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 13){upNum = e.keyCode ;upMode = false;}
-		if(e.keyCode == 16){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 17){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 18){upNum = e.keyCode ;upMode = false;}
-		if(e.keyCode == 19){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 20){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 27){upNum = e.keyCode ;upMode = false;}
-		if(e.keyCode == 33){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 32){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 34){upNum = e.keyCode ;upMode = false;}
-		if(e.keyCode == 35){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 36){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 37){upNum = e.keyCode ;upMode = false;}
-		if(e.keyCode == 38){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 39){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 40){upNum = e.keyCode ;upMode = false;}
-		if(e.keyCode == 44){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 45){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 46){upNum = e.keyCode ;upMode = false;}
-		if(e.keyCode == 48){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 49){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 50){upNum = e.keyCode ;upMode = false;}
-		if(e.keyCode == 51){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 52){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 53){upNum = e.keyCode ;upMode = false;}
-		if(e.keyCode == 54){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 55){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 56){upNum = e.keyCode ;upMode = false;}
-		if(e.keyCode == 57){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 65){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 66){upNum = e.keyCode ;upMode = false;}
-		if(e.keyCode == 67){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 68){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 69){upNum = e.keyCode ;upMode = false;}
-		if(e.keyCode == 70){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 71){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 72){upNum = e.keyCode ;upMode = false;}
-		if(e.keyCode == 73){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 74){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 75){upNum = e.keyCode ;upMode = false;}
-		if(e.keyCode == 76){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 77){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 78){upNum = e.keyCode ;upMode = false;}
-		if(e.keyCode == 79){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 80){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 81){upNum = e.keyCode ;upMode = false;}
-		if(e.keyCode == 82){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 83){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 84){upNum = e.keyCode ;upMode = false;}
-		if(e.keyCode == 85){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 86){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 87){upNum = e.keyCode ;upMode = false;}
-		if(e.keyCode == 88){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 89){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 90){upNum = e.keyCode ;upMode = false;}
-		if(e.keyCode == 91){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 92){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 93){upNum = e.keyCode ;upMode = false;}
-		if(e.keyCode == 96){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 97){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 98){upNum = e.keyCode ;upMode = false;}
-		if(e.keyCode == 99){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 100){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 101){upNum = e.keyCode ;upMode = false;}
-		if(e.keyCode == 102){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 103){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 104){upNum = e.keyCode ;upMode = false;}
-		if(e.keyCode == 105){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 106){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 107){upNum = e.keyCode ;upMode = false;}
-		if(e.keyCode == 109){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 110){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 111){upNum = e.keyCode ;upMode = false;}
-		if(e.keyCode == 112){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 113){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 114){upNum = e.keyCode ;upMode = false;}
-		if(e.keyCode == 115){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 116){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 117){upNum = e.keyCode ;upMode = false;}
-		if(e.keyCode == 118){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 119){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 120){upNum = e.keyCode ;upMode = false;}
-		if(e.keyCode == 121){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 122){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 123){upNum = e.keyCode ;upMode = false;}
-		if(e.keyCode == 144){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 145){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 186){upNum = e.keyCode ;upMode = false;}
-		if(e.keyCode == 187){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 188){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 189){upNum = e.keyCode ;upMode = false;}
-		if(e.keyCode == 190){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 191){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 219){upNum = e.keyCode ;upMode = false;}
-		if(e.keyCode == 220){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 221){upNum = e.keyCode ;upMode = false;}if(e.keyCode == 222){upNum = e.keyCode ;upMode = false;}
+	if(upMode){
+		if(e.keyCode==8){uplet="back";upNum=e.keyCode;upMode=false;}if(e.keyCode==9){uplet="tab";upNum=e.keyCode;upMode=false;}if(e.keyCode==13){uplet="ent";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==16){uplet="shift";upNum=e.keyCode;upMode=false;}if(e.keyCode==17){uplet="ctrl";upNum=e.keyCode;upMode=false;}if(e.keyCode==18){uplet="alt";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==19){uplet="pause";upNum=e.keyCode;upMode=false;}if(e.keyCode==20){uplet="cLoc";upNum=e.keyCode;upMode=false;}if(e.keyCode==27){uplet="esc";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==33){uplet="pgup";upNum=e.keyCode;upMode=false;}if(e.keyCode==32){uplet="spc";upNum=e.keyCode;upMode=false;}if(e.keyCode==34){uplet="pgdn";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==35){uplet="end";upNum=e.keyCode;upMode=false;}if(e.keyCode==36){uplet="home";upNum=e.keyCode;upMode=false;}if(e.keyCode==37){uplet="left";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==38){uplet="up";upNum=e.keyCode;upMode=false;}if(e.keyCode==39){uplet="rght";upNum=e.keyCode;upMode=false;}if(e.keyCode==40){uplet="down";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==44){uplet="ptsc";upNum=e.keyCode;upMode=false;}if(e.keyCode==45){uplet="inst";upNum=e.keyCode;upMode=false;}if(e.keyCode==46){uplet="delete";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==48){uplet="0";upNum=e.keyCode;upMode=false;}if(e.keyCode==49){uplet="1";upNum=e.keyCode;upMode=false;}if(e.keyCode==50){uplet="2";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==51){uplet="3";upNum=e.keyCode;upMode=false;}if(e.keyCode==52){uplet="4";upNum=e.keyCode;upMode=false;}if(e.keyCode==53){uplet="5";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==54){uplet="6";upNum=e.keyCode;upMode=false;}if(e.keyCode==55){uplet="7";upNum=e.keyCode;upMode=false;}if(e.keyCode==56){uplet="8";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==57){uplet="9";upNum=e.keyCode;upMode=false;}if(e.keyCode==65){uplet="A";upNum=e.keyCode;upMode=false;}if(e.keyCode==66){uplet="B";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==67){uplet="C";upNum=e.keyCode;upMode=false;}if(e.keyCode==68){uplet="D";upNum=e.keyCode;upMode=false;}if(e.keyCode==69){uplet="E";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==70){uplet="F";upNum=e.keyCode;upMode=false;}if(e.keyCode==71){uplet="G";upNum=e.keyCode;upMode=false;}if(e.keyCode==72){uplet="H";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==73){uplet="I";upNum=e.keyCode;upMode=false;}if(e.keyCode==74){uplet="J";upNum=e.keyCode;upMode=false;}if(e.keyCode==75){uplet="K";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==76){uplet="L";upNum=e.keyCode;upMode=false;}if(e.keyCode==77){uplet="M";upNum=e.keyCode;upMode=false;}if(e.keyCode==78){uplet="N";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==79){uplet="O";upNum=e.keyCode;upMode=false;}if(e.keyCode==80){uplet="P";upNum=e.keyCode;upMode=false;}if(e.keyCode==81){uplet="Q";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==82){uplet="R";upNum=e.keyCode;upMode=false;}if(e.keyCode==83){uplet="S";upNum=e.keyCode;upMode=false;}if(e.keyCode==84){uplet="T";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==85){uplet="U";upNum=e.keyCode;upMode=false;}if(e.keyCode==86){uplet="V";upNum=e.keyCode;upMode=false;}if(e.keyCode==87){uplet="W";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==88){uplet="X";upNum=e.keyCode;upMode=false;}if(e.keyCode==89){uplet="Y";upNum=e.keyCode;upMode=false;}if(e.keyCode==90){uplet="Z";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==96){uplet="N0";upNum=e.keyCode;upMode=false;}if(e.keyCode==97){uplet="N1";upNum=e.keyCode;upMode=false;}if(e.keyCode==98){uplet="N2";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==99){uplet="N3";upNum=e.keyCode;upMode=false;}if(e.keyCode==100){uplet="N4";upNum=e.keyCode;upMode=false;}if(e.keyCode==101){uplet="N5";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==102){uplet="N6";upNum=e.keyCode;upMode=false;}if(e.keyCode==103){uplet="N7";upNum=e.keyCode;upMode=false;}if(e.keyCode==104){uplet="N8";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==105){uplet="N9";upNum=e.keyCode;upMode=false;}if(e.keyCode==107){uplet="+";upNum=e.keyCode;upMode=false;}if(e.keyCode==109){uplet="-";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==110){uplet=".";upNum=e.keyCode;upMode=false;}if(e.keyCode==111){uplet="/";upNum=e.keyCode;upMode=false;}if(e.keyCode==186){uplet=":";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==187){uplet="=";upNum=e.keyCode;upMode=false;}if(e.keyCode==188){uplet=",";upNum=e.keyCode;upMode=false;}if(e.keyCode==189){uplet="-";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==190){uplet=".";upNum=e.keyCode;upMode=false;}if(e.keyCode==191){uplet="/";upNum=e.keyCode;upMode=false;}if(e.keyCode==219){uplet="~";upNum=e.keyCode;upMode=false;}
+		if(e.keyCode==220){uplet="\'";upNum=e.keyCode;upMode=false;}if(e.keyCode==221){uplet="]";upNum=e.keyCode;upMode=false;}if(e.keyCode==222){uplet="'";upNum=e.keyCode;upMode=false;}
 	}
-	if(downMode)
-	{
-		if(e.keyCode == 8){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 9){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 13){downNum = e.keyCode ;downMode = false;}
-		if(e.keyCode == 16){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 17){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 18){downNum = e.keyCode ;downMode = false;}
-		if(e.keyCode == 19){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 20){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 27){downNum = e.keyCode ;downMode = false;}
-		if(e.keyCode == 33){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 32){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 34){downNum = e.keyCode ;downMode = false;}
-		if(e.keyCode == 35){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 36){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 37){downNum = e.keyCode ;downMode = false;}
-		if(e.keyCode == 38){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 39){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 40){downNum = e.keyCode ;downMode = false;}
-		if(e.keyCode == 44){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 45){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 46){downNum = e.keyCode ;downMode = false;}
-		if(e.keyCode == 48){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 49){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 50){downNum = e.keyCode ;downMode = false;}
-		if(e.keyCode == 51){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 52){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 53){downNum = e.keyCode ;downMode = false;}
-		if(e.keyCode == 54){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 55){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 56){downNum = e.keyCode ;downMode = false;}
-		if(e.keyCode == 57){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 65){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 66){downNum = e.keyCode ;downMode = false;}
-		if(e.keyCode == 67){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 68){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 69){downNum = e.keyCode ;downMode = false;}
-		if(e.keyCode == 70){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 71){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 72){downNum = e.keyCode ;downMode = false;}
-		if(e.keyCode == 73){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 74){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 75){downNum = e.keyCode ;downMode = false;}
-		if(e.keyCode == 76){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 77){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 78){downNum = e.keyCode ;downMode = false;}
-		if(e.keyCode == 79){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 80){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 81){downNum = e.keyCode ;downMode = false;}
-		if(e.keyCode == 82){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 83){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 84){downNum = e.keyCode ;downMode = false;}
-		if(e.keyCode == 85){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 86){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 87){downNum = e.keyCode ;downMode = false;}
-		if(e.keyCode == 88){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 89){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 90){downNum = e.keyCode ;downMode = false;}
-		if(e.keyCode == 91){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 92){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 93){downNum = e.keyCode ;downMode = false;}
-		if(e.keyCode == 96){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 97){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 98){downNum = e.keyCode ;downMode = false;}
-		if(e.keyCode == 99){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 100){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 101){downNum = e.keyCode ;downMode = false;}
-		if(e.keyCode == 102){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 103){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 104){downNum = e.keyCode ;downMode = false;}
-		if(e.keyCode == 105){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 106){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 107){downNum = e.keyCode ;downMode = false;}
-		if(e.keyCode == 109){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 110){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 111){downNum = e.keyCode ;downMode = false;}
-		if(e.keyCode == 112){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 113){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 114){downNum = e.keyCode ;downMode = false;}
-		if(e.keyCode == 115){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 116){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 117){downNum = e.keyCode ;downMode = false;}
-		if(e.keyCode == 118){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 119){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 120){downNum = e.keyCode ;downMode = false;}
-		if(e.keyCode == 121){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 122){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 123){downNum = e.keyCode ;downMode = false;}
-		if(e.keyCode == 144){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 145){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 186){downNum = e.keyCode ;downMode = false;}
-		if(e.keyCode == 187){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 188){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 189){downNum = e.keyCode ;downMode = false;}
-		if(e.keyCode == 190){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 191){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 219){downNum = e.keyCode ;downMode = false;}
-		if(e.keyCode == 220){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 221){downNum = e.keyCode ;downMode = false;}if(e.keyCode == 222){downNum = e.keyCode ;downMode = false;}
+	if(upMode){
+		if(e.keyCode==8){downlet="back";downNum=e.keyCode;downMode=false;}if(e.keyCode==9){downlet="tab";downNum=e.keyCode;downMode=false;}if(e.keyCode==13){downlet="ent";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==16){downlet="shift";downNum=e.keyCode;downMode=false;}if(e.keyCode==17){downlet="ctrl";downNum=e.keyCode;downMode=false;}if(e.keyCode==18){downlet="alt";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==19){downlet="pause";downNum=e.keyCode;downMode=false;}if(e.keyCode==20){downlet="cLoc";downNum=e.keyCode;downMode=false;}if(e.keyCode==27){downlet="esc";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==33){downlet="pgup";downNum=e.keyCode;downMode=false;}if(e.keyCode==32){downlet="spc";downNum=e.keyCode;downMode=false;}if(e.keyCode==34){downlet="pgdn";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==35){downlet="end";downNum=e.keyCode;downMode=false;}if(e.keyCode==36){downlet="home";downNum=e.keyCode;downMode=false;}if(e.keyCode==37){downlet="left";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==38){downlet="up";downNum=e.keyCode;downMode=false;}if(e.keyCode==39){downlet="rght";downNum=e.keyCode;downMode=false;}if(e.keyCode==40){downlet="down";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==44){downlet="ptsc";downNum=e.keyCode;downMode=false;}if(e.keyCode==45){downlet="inst";downNum=e.keyCode;downMode=false;}if(e.keyCode==46){downlet="delete";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==48){downlet="0";downNum=e.keyCode;downMode=false;}if(e.keyCode==49){downlet="1";downNum=e.keyCode;downMode=false;}if(e.keyCode==50){downlet="2";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==51){downlet="3";downNum=e.keyCode;downMode=false;}if(e.keyCode==52){downlet="4";downNum=e.keyCode;downMode=false;}if(e.keyCode==53){downlet="5";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==54){downlet="6";downNum=e.keyCode;downMode=false;}if(e.keyCode==55){downlet="7";downNum=e.keyCode;downMode=false;}if(e.keyCode==56){downlet="8";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==57){downlet="9";downNum=e.keyCode;downMode=false;}if(e.keyCode==65){downlet="A";downNum=e.keyCode;downMode=false;}if(e.keyCode==66){downlet="B";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==67){downlet="C";downNum=e.keyCode;downMode=false;}if(e.keyCode==68){downlet="D";downNum=e.keyCode;downMode=false;}if(e.keyCode==69){downlet="E";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==70){downlet="F";downNum=e.keyCode;downMode=false;}if(e.keyCode==71){downlet="G";downNum=e.keyCode;downMode=false;}if(e.keyCode==72){downlet="H";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==73){downlet="I";downNum=e.keyCode;downMode=false;}if(e.keyCode==74){downlet="J";downNum=e.keyCode;downMode=false;}if(e.keyCode==75){downlet="K";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==76){downlet="L";downNum=e.keyCode;downMode=false;}if(e.keyCode==77){downlet="M";downNum=e.keyCode;downMode=false;}if(e.keyCode==78){downlet="N";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==79){downlet="O";downNum=e.keyCode;downMode=false;}if(e.keyCode==80){downlet="P";downNum=e.keyCode;downMode=false;}if(e.keyCode==81){downlet="Q";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==82){downlet="R";downNum=e.keyCode;downMode=false;}if(e.keyCode==83){downlet="S";downNum=e.keyCode;downMode=false;}if(e.keyCode==84){downlet="T";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==85){downlet="U";downNum=e.keyCode;downMode=false;}if(e.keyCode==86){downlet="V";downNum=e.keyCode;downMode=false;}if(e.keyCode==87){downlet="W";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==88){downlet="X";downNum=e.keyCode;downMode=false;}if(e.keyCode==89){downlet="Y";downNum=e.keyCode;downMode=false;}if(e.keyCode==90){downlet="Z";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==96){downlet="N0";downNum=e.keyCode;downMode=false;}if(e.keyCode==97){downlet="N1";downNum=e.keyCode;downMode=false;}if(e.keyCode==98){downlet="N2";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==99){downlet="N3";downNum=e.keyCode;downMode=false;}if(e.keyCode==100){downlet="N4";downNum=e.keyCode;downMode=false;}if(e.keyCode==101){downlet="N5";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==102){downlet="N6";downNum=e.keyCode;downMode=false;}if(e.keyCode==103){downlet="N7";downNum=e.keyCode;downMode=false;}if(e.keyCode==104){downlet="N8";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==105){downlet="N9";downNum=e.keyCode;downMode=false;}if(e.keyCode==107){downlet="+";downNum=e.keyCode;downMode=false;}if(e.keyCode==109){downlet="-";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==110){downlet=".";downNum=e.keyCode;downMode=false;}if(e.keyCode==111){downlet="/";downNum=e.keyCode;downMode=false;}if(e.keyCode==186){downlet=":";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==187){downlet="=";downNum=e.keyCode;downMode=false;}if(e.keyCode==188){downlet=",";downNum=e.keyCode;downMode=false;}if(e.keyCode==189){downlet="-";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==190){downlet=".";downNum=e.keyCode;downMode=false;}if(e.keyCode==191){downlet="/";downNum=e.keyCode;downMode=false;}if(e.keyCode==219){downlet="~";downNum=e.keyCode;downMode=false;}
+		if(e.keyCode==220){downlet="\'";downNum=e.keyCode;downMode=false;}if(e.keyCode==221){downlet="]";downNum=e.keyCode;downMode=false;}if(e.keyCode==222){downlet="'";downNum=e.keyCode;downMode=false;}
 	}
-	if(leftMode)
-	{
-		if(e.keyCode == 8){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 9){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 13){leftNum = e.keyCode;leftMode = false;}
-		if(e.keyCode == 16){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 17){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 18){leftNum = e.keyCode;leftMode = false;}
-		if(e.keyCode == 19){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 20){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 27){leftNum = e.keyCode;leftMode = false;}
-		if(e.keyCode == 33){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 32){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 34){leftNum = e.keyCode;leftMode = false;}
-		if(e.keyCode == 35){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 36){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 37){leftNum = e.keyCode;leftMode = false;}
-		if(e.keyCode == 38){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 39){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 40){leftNum = e.keyCode;leftMode = false;}
-		if(e.keyCode == 44){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 45){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 46){leftNum = e.keyCode;leftMode = false;}
-		if(e.keyCode == 48){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 49){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 50){leftNum = e.keyCode;leftMode = false;}
-		if(e.keyCode == 51){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 52){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 53){leftNum = e.keyCode;leftMode = false;}
-		if(e.keyCode == 54){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 55){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 56){leftNum = e.keyCode;leftMode = false;}
-		if(e.keyCode == 57){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 65){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 66){leftNum = e.keyCode;leftMode = false;}
-		if(e.keyCode == 67){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 68){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 69){leftNum = e.keyCode;leftMode = false;}
-		if(e.keyCode == 70){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 71){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 72){leftNum = e.keyCode;leftMode = false;}
-		if(e.keyCode == 73){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 74){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 75){leftNum = e.keyCode;leftMode = false;}
-		if(e.keyCode == 76){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 77){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 78){leftNum = e.keyCode;leftMode = false;}
-		if(e.keyCode == 79){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 80){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 81){leftNum = e.keyCode;leftMode = false;}
-		if(e.keyCode == 82){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 83){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 84){leftNum = e.keyCode;leftMode = false;}
-		if(e.keyCode == 85){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 86){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 87){leftNum = e.keyCode;leftMode = false;}
-		if(e.keyCode == 88){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 89){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 90){leftNum = e.keyCode;leftMode = false;}
-		if(e.keyCode == 91){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 92){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 93){leftNum = e.keyCode;leftMode = false;}
-		if(e.keyCode == 96){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 97){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 98){leftNum = e.keyCode;leftMode = false;}
-		if(e.keyCode == 99){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 100){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 101){leftNum = e.keyCode;leftMode = false;}
-		if(e.keyCode == 102){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 103){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 104){leftNum = e.keyCode;leftMode = false;}
-		if(e.keyCode == 105){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 106){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 107){leftNum = e.keyCode;leftMode = false;}
-		if(e.keyCode == 109){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 110){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 111){leftNum = e.keyCode;leftMode = false;}
-		if(e.keyCode == 112){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 113){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 114){leftNum = e.keyCode;leftMode = false;}
-		if(e.keyCode == 115){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 116){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 117){leftNum = e.keyCode;leftMode = false;}
-		if(e.keyCode == 118){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 119){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 120){leftNum = e.keyCode;leftMode = false;}
-		if(e.keyCode == 121){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 122){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 123){leftNum = e.keyCode;leftMode = false;}
-		if(e.keyCode == 144){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 145){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 186){leftNum = e.keyCode;leftMode = false;}
-		if(e.keyCode == 187){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 188){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 189){leftNum = e.keyCode;leftMode = false;}
-		if(e.keyCode == 190){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 191){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 219){leftNum = e.keyCode;leftMode = false;}
-		if(e.keyCode == 220){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 221){leftNum = e.keyCode;leftMode = false;}if(e.keyCode == 222){leftNum = e.keyCode;leftMode = false;}
+	if(upMode){	
+		if(e.keyCode==8){leftlet="back";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==9){leftlet="tab";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==13){leftlet="ent";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==16){leftlet="shift";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==17){leftlet="ctrl";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==18){leftlet="alt";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==19){leftlet="pause";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==20){leftlet="cLoc";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==27){leftlet="esc";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==33){leftlet="pgup";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==32){leftlet="spc";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==34){leftlet="pgdn";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==35){leftlet="end";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==36){leftlet="home";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==37){leftlet="left";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==38){leftlet="up";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==39){leftlet="rght";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==40){leftlet="down";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==44){leftlet="ptsc";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==45){leftlet="inst";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==46){leftlet="delete";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==48){leftlet="0";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==49){leftlet="1";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==50){leftlet="2";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==51){leftlet="3";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==52){leftlet="4";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==53){leftlet="5";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==54){leftlet="6";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==55){leftlet="7";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==56){leftlet="8";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==57){leftlet="9";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==65){leftlet="A";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==66){leftlet="B";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==67){leftlet="C";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==68){leftlet="D";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==69){leftlet="E";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==70){leftlet="F";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==71){leftlet="G";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==72){leftlet="H";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==73){leftlet="I";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==74){leftlet="J";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==75){leftlet="K";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==76){leftlet="L";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==77){leftlet="M";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==78){leftlet="N";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==79){leftlet="O";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==80){leftlet="P";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==81){leftlet="Q";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==82){leftlet="R";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==83){leftlet="S";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==84){leftlet="T";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==85){leftlet="U";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==86){leftlet="V";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==87){leftlet="W";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==88){leftlet="X";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==89){leftlet="Y";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==90){leftlet="Z";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==96){leftlet="N0";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==97){leftlet="N1";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==98){leftlet="N2";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==99){leftlet="N3";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==100){leftlet="N4";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==101){leftlet="N5";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==102){leftlet="N6";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==103){leftlet="N7";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==104){leftlet="N8";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==105){leftlet="N9";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==107){leftlet="+";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==109){leftlet="-";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==110){leftlet=".";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==111){leftlet="/";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==186){leftlet=":";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==187){leftlet="=";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==188){leftlet=",";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==189){leftlet="-";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==190){leftlet=".";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==191){leftlet="/";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==219){leftlet="~";leftNum=e.keyCode;leftMode=false;}
+		if(e.keyCode==220){leftlet="\'";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==221){leftlet="]";leftNum=e.keyCode;leftMode=false;}if(e.keyCode==222){leftlet="'";leftNum=e.keyCode;leftMode=false;}
 	}
-	if(rightMode)
-	{
-		if(e.keyCode == 8){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 9){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 13){rightNum = e.keyCode;rightMode = false;}
-		if(e.keyCode == 16){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 17){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 18){rightNum = e.keyCode;rightMode = false;}
-		if(e.keyCode == 19){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 20){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 27){rightNum = e.keyCode;rightMode = false;}
-		if(e.keyCode == 33){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 32){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 34){rightNum = e.keyCode;rightMode = false;}
-		if(e.keyCode == 35){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 36){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 66){rightNum = e.keyCode;rightMode = false;}
-		if(e.keyCode == 37){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 38){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 39){rightNum = e.keyCode;rightMode = false;}
-		if(e.keyCode == 40){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 44){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 45){rightNum = e.keyCode;rightMode = false;}
-		if(e.keyCode == 46){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 48){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 49){rightNum = e.keyCode;rightMode = false;}
-		if(e.keyCode == 50){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 51){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 52){rightNum = e.keyCode;rightMode = false;}
-		if(e.keyCode == 53){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 54){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 55){rightNum = e.keyCode;rightMode = false;}
-		if(e.keyCode == 56){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 57){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 65){rightNum = e.keyCode;rightMode = false;}
-		if(e.keyCode == 67){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 68){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 69){rightNum = e.keyCode;rightMode = false;}
-		if(e.keyCode == 70){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 71){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 72){rightNum = e.keyCode;rightMode = false;}
-		if(e.keyCode == 73){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 74){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 75){rightNum = e.keyCode;rightMode = false;}
-		if(e.keyCode == 76){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 77){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 78){rightNum = e.keyCode;rightMode = false;}
-		if(e.keyCode == 79){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 80){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 81){rightNum = e.keyCode;rightMode = false;}
-		if(e.keyCode == 82){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 83){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 84){rightNum = e.keyCode;rightMode = false;}
-		if(e.keyCode == 85){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 86){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 87){rightNum = e.keyCode;rightMode = false;}
-		if(e.keyCode == 88){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 89){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 90){rightNum = e.keyCode;rightMode = false;}
-		if(e.keyCode == 91){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 92){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 93){rightNum = e.keyCode;rightMode = false;}
-		if(e.keyCode == 96){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 97){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 98){rightNum = e.keyCode;rightMode = false;}
-		if(e.keyCode == 99){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 100){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 101){rightNum = e.keyCode;rightMode = false;}
-		if(e.keyCode == 102){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 103){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 104){rightNum = e.keyCode;rightMode = false;}
-		if(e.keyCode == 105){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 106){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 107){rightNum = e.keyCode;rightMode = false;}
-		if(e.keyCode == 109){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 110){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 111){rightNum = e.keyCode;rightMode = false;}
-		if(e.keyCode == 112){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 113){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 114){rightNum = e.keyCode;rightMode = false;}
-		if(e.keyCode == 115){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 116){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 117){rightNum = e.keyCode;rightMode = false;}
-		if(e.keyCode == 118){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 119){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 120){rightNum = e.keyCode;rightMode = false;}
-		if(e.keyCode == 121){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 122){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 123){rightNum = e.keyCode;rightMode = false;}
-		if(e.keyCode == 144){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 145){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 186){rightNum = e.keyCode;rightMode = false;}
-		if(e.keyCode == 187){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 188){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 189){rightNum = e.keyCode;rightMode = false;}
-		if(e.keyCode == 190){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 191){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 219){rightNum = e.keyCode;rightMode = false;}
-		if(e.keyCode == 220){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 221){rightNum = e.keyCode;rightMode = false;}if(e.keyCode == 222){rightNum = e.keyCode;rightMode = false;}
+	if(upMode){	
+		if(e.keyCode==8){rightlet="back";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==9){rightlet="tab";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==13){rightlet="ent";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==16){rightlet="shift";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==17){rightlet="ctrl";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==18){rightlet="alt";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==19){rightlet="pause";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==20){rightlet="cLoc";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==27){rightlet="esc";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==33){rightlet="pgup";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==32){rightlet="spc";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==34){rightlet="pgdn";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==35){rightlet="end";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==36){rightlet="home";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==37){rightlet="left";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==38){rightlet="up";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==39){rightlet="rght";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==40){rightlet="down";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==44){rightlet="ptsc";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==45){rightlet="inst";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==46){rightlet="delete";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==48){rightlet="0";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==49){rightlet="1";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==50){rightlet="2";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==51){rightlet="3";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==52){rightlet="4";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==53){rightlet="5";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==54){rightlet="6";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==55){rightlet="7";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==56){rightlet="8";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==57){rightlet="9";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==65){rightlet="A";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==66){rightlet="B";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==67){rightlet="C";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==68){rightlet="D";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==69){rightlet="E";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==70){rightlet="F";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==71){rightlet="G";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==72){rightlet="H";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==73){rightlet="I";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==74){rightlet="J";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==75){rightlet="K";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==76){rightlet="L";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==77){rightlet="M";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==78){rightlet="N";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==79){rightlet="O";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==80){rightlet="P";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==81){rightlet="Q";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==82){rightlet="R";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==83){rightlet="S";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==84){rightlet="T";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==85){rightlet="U";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==86){rightlet="V";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==87){rightlet="W";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==88){rightlet="X";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==89){rightlet="Y";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==90){rightlet="Z";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==96){rightlet="N0";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==97){rightlet="N1";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==98){rightlet="N2";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==99){rightlet="N3";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==100){rightlet="N4";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==101){rightlet="N5";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==102){rightlet="N6";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==103){rightlet="N7";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==104){rightlet="N8";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==105){rightlet="N9";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==107){rightlet="+";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==109){rightlet="-";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==110){rightlet=".";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==111){rightlet="/";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==186){rightlet=":";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==187){rightlet="=";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==188){rightlet=",";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==189){rightlet="-";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==190){rightlet=".";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==191){rightlet="/";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==219){rightlet="~";rightNum=e.keyCode;rightMode=false;}
+		if(e.keyCode==220){rightlet="\'";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==221){rightlet="]";rightNum=e.keyCode;rightMode=false;}if(e.keyCode==222){rightlet="'";rightNum=e.keyCode;rightMode=false;}
 	}
 	if(e.keyCode == upNum){upPressed = true;}
 	if(e.keyCode == downNum){downPressed = true;}
@@ -412,6 +387,7 @@ function keyUpHandler(e){
 		spacePressed = false;
 	}
 }
+
 function controls()
 {
 	if(rightPressed)
