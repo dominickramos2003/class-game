@@ -510,6 +510,17 @@ function playerAnimation()
 		//jump facing left
 		currentSprite = jumpSprite2;
 	}
+	if(!upPressed && !rightPressed && !leftPressed && !falling)
+	{
+		if(myDirection == 1)
+		{
+			currentSprite = sprite1r;
+		}
+		if(myDirection == 2)
+		{
+			currentSprite = sprite1;
+		}
+	}
 }
 function startScreen()
 {
